@@ -5,7 +5,7 @@
  */
 package fishingchampion;
 
-import byui.cit260.fishingChampion.model.Player;
+import byui.cit260.fishingChampion.model.Shop;
 
 /**
  *
@@ -18,14 +18,15 @@ public class FishingChampion {
      */
     public static void main(String[] args) {
         
-        Player playerOne = new Player();
+        Shop shop = new Shop();
         
-        playerOne.setName("Fred Flintstone");
-        playerOne.setBestTime(7.00);
-        playerOne.setMoneyAmount(75.00);
-        
-        String playerInfo = playerOne.toString();
-        System.out.println(playerInfo);
+        shop.setFishPrice(10);
+        shop.setBaitCost(5);
+        shop.setFuelCost(20);
+        shop.setUpgradeFuelCost(50);
+        shop.setUpgradeSizeCost(50);
+        String itemInfo = shop.toString();
+        System.out.println(itemInfo);
     }
     
 }
