@@ -15,5 +15,19 @@ public class FishingControl {
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
                 return fishWeight;
     }
-    
+    public int determineCatch(int fishWeight, int pullStrength) {
+        int isCaught;
+        if (pullStrength < 0) {
+            isCaught = -1;
+        } else if (pullStrength > 100) {
+            isCaught = 101;
+        } else if (pullStrength == 0) {
+            isCaught = 0;
+        } else if (Math.abs(fishWeight - pullStrength) > 5) {
+            isCaught = 2;
+        } else {
+            isCaught = 1;
+        }
+        return isCaught;
+    }
 }
