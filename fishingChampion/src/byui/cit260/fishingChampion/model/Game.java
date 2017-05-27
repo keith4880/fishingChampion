@@ -1,6 +1,6 @@
 package byui.cit260.fishingChampion.model;
 
-/**
+/*
  * Created by brax10 on 5/13/17.
  */
 public class Game {
