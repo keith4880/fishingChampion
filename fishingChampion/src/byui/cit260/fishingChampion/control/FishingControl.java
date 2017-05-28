@@ -10,6 +10,9 @@ package byui.cit260.fishingChampion.control;
  * @author kyt09
  */
 public class FishingControl {
+
+  
+ 
     public int generateFish() {
         int fishWeight;
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
@@ -30,4 +33,23 @@ public class FishingControl {
         }
         return isCaught;
     }
+    
+    /**
+     *
+     * @param fuelContained
+     * @param fishContained
+     * @return 
+     */
+    public double calcBoatSink(double fuelContained, double fishContained) {
+    if (fuelContained > 100 || fishContained > 100) {
+        return -1;
+    }
+    
+       int maxWeight = 200;
+       double boatSink = maxWeight - (fuelContained - fishContained);
+       return boatSink;
+    
+    }
+
 }
+    

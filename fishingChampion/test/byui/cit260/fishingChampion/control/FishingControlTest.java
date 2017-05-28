@@ -26,7 +26,7 @@ public class FishingControlTest {
         FishingControl instance = new FishingControl();
         int result = instance.generateFish();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -43,6 +43,23 @@ public class FishingControlTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of calcBoatSink method, of class FishingControl.
+     */
+    @Test
+    public void testCalcBoatSink() {
+        System.out.println("calcBoatSink");
+        double fuelContained = 10.0;
+        double fishContained = 50.0;
+        FishingControl instance = new FishingControl();
+        
+        double expResult = 140;
+        double result = instance.calcBoatSink(fuelContained, fishContained);
+        assertEquals(expResult, result, 100.0);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
     
 }
