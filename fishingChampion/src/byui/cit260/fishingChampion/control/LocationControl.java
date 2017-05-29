@@ -11,11 +11,31 @@ package byui.cit260.fishingChampion.control;
  */
 public class LocationControl {
     public double determineDistance(int row, int column, int newRow, int newColumn, int rowCount, int columnCount) {
-        if (newRow > rowCount || newRow < 0 || newColumn > columnCount || newColumn < 0) {
+        // Row failure
+        if (newRow > rowCount || newRow < 0 || row > rowCount || row < 0)  {
             return -1;
         }
-        double distance;
-        distance = Math.sqrt(Math.pow(newRow-row, 2)+Math.pow(newColumn-column, 2));
+        // Column failure
+        if (newColumn > columnCount || newColumn < 0 || column > columnCount || column < 0) {
+            return -2;
+        }
+        
+        double distance = Math.sqrt((Math.pow(newRow - row, 2)) + (Math.pow(newColumn - column, 2)));
+        
         return distance;
+    }
+    
+    public double calcFuelNeeded(double distance, double fuelEfficiency) {
+        if (distance < 0) {
+            return -1;
+        }
+        
+        if (fuelEfficiency <= 0) {
+            return -2;
+        }
+        
+        double fuelNeeded = distance / fuelEfficiency;
+        
+        return fuelNeeded;
     }
 }

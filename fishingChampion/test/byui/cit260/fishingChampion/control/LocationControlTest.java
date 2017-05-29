@@ -5,8 +5,12 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -17,24 +21,51 @@ public class LocationControlTest {
     public LocationControlTest() {
     }
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
     /**
      * Test of determineDistance method, of class LocationControl.
      */
     @Test
     public void testDetermineDistance() {
-        System.out.println("determineDistance");
-        int row = 2;
-        int column = 2;
-        int newRow = 2;
-        int newColumn = 4;
-        int rowCount = 6;
-        int columnCount = 6;
+        System.out.println("determineDistance tests");
         LocationControl instance = new LocationControl();
-        double expResult = Math.sqrt(8);
-        double result = instance.determineDistance(row, column, newRow, newColumn, rowCount, columnCount);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
+        assertEquals(Math.sqrt(8), instance.determineDistance(2, 2, 4, 4, 6, 6), 0.0);
+        assertEquals(-1, instance.determineDistance(7, 2, 4, 4, 6, 6), 0.0);
+        assertEquals(-1, instance.determineDistance(-1, 2, 4, 4, 6, 6), 0.0);
+        assertEquals(-1, instance.determineDistance(2, 2, 7, 4, 6, 6), 0.0);
+        assertEquals(-1, instance.determineDistance(2, 2, -1, 4, 6, 6), 0.0);
+        assertEquals(-2, instance.determineDistance(2, 2, 4, 7, 6, 6), 0.0);
+        assertEquals(-2, instance.determineDistance(2, 2, 4, -1, 6, 6), 0.0);
+        assertEquals(-2, instance.determineDistance(2, 7, 4, 4, 6, 6), 0.0);
+        assertEquals(-2, instance.determineDistance(2, -1, 4, 4, 6, 6), 0.0);
     }
-    
+
+    /**
+     * Test of calcFuelNeeded method, of class LocationControl.
+     */
+    @Test
+    public void testCalcFuelNeeded() {
+        System.out.println("calcFuelNeeded tests");
+        LocationControl instance = new LocationControl();
+        assertEquals(-2, instance.calcFuelNeeded(20, 0), 0.0);
+        assertEquals(-1, instance.calcFuelNeeded(-1, 7), 0.0);
+        assertEquals(10, instance.calcFuelNeeded(50, 5), 0.0);
+        assertEquals(-2, instance.calcFuelNeeded(25, -1), 0.0);
+        assertEquals(0, instance.calcFuelNeeded(0, 5), 0.0);
+    }    
 }
