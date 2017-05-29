@@ -45,12 +45,12 @@ public class FishingControlTest {
         // fail("The test case is a prototype.");
     }
 
-    /**
+    /*
      * Test of calcBoatSink method, of class FishingControl.
      */
     @Test
     public void testCalcBoatSink() {
-        System.out.println("calcBoatSink");
+        System.out.println("calcBoatSink Test 1");
         double fuelContained = 10.0;
         double fishContained = 50.0;
         FishingControl instance = new FishingControl();
@@ -60,6 +60,61 @@ public class FishingControlTest {
         assertEquals(expResult, result, 100.0);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
+        
+        // Test Case #2
+        System.out.println("calcBoatSink Test 2");
+        fuelContained = 100.0;
+        fishContained = 100.0;
+        
+        expResult = 200;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #3
+        System.out.println("calcBoatSink Test 3");
+        fuelContained = 101.0;
+        fishContained = 101.0;
+        
+        expResult = -1.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #4
+        System.out.println("calcBoatSink Test 4");
+        fuelContained = 101.0;
+        fishContained = 100.0;
+        
+        expResult = -1.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #5
+        System.out.println("calcBoatSink Test 5");
+        fuelContained = 100.0;
+        fishContained = 101.0;
+        
+        expResult = -1.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #6
+        System.out.println("calcBoatSink Test 6");
+        fuelContained = 100.0;
+        fishContained = 99.0;
+        
+        expResult = 199.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
     }
     
 }
