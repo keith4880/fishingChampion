@@ -51,11 +51,11 @@ public class FishingControlTest {
     @Test
     public void testCalcBoatSink() {
         System.out.println("calcBoatSink Test 1");
-        double fuelContained = 10.0;
-        double fishContained = 50.0;
+        double fuelContained = 100.0;
+        double fishContained = 100.0;
         FishingControl instance = new FishingControl();
         
-        double expResult = 140;
+        double expResult = 0.0;
         double result = instance.calcBoatSink(fuelContained, fishContained);
         assertEquals(expResult, result, 100.0);
         // TODO review the generated test code and remove the default call to fail.
@@ -63,10 +63,10 @@ public class FishingControlTest {
         
         // Test Case #2
         System.out.println("calcBoatSink Test 2");
-        fuelContained = 100.0;
-        fishContained = 100.0;
+        fuelContained = 101.0;
+        fishContained = 101.0;
         
-        expResult = 200;
+        expResult = -1;
         
         result = instance.calcBoatSink(fuelContained, fishContained);
         
@@ -75,7 +75,7 @@ public class FishingControlTest {
         // Test Case #3
         System.out.println("calcBoatSink Test 3");
         fuelContained = 101.0;
-        fishContained = 101.0;
+        fishContained = 100.0;
         
         expResult = -1.0;
         
@@ -85,8 +85,8 @@ public class FishingControlTest {
         
         // Test Case #4
         System.out.println("calcBoatSink Test 4");
-        fuelContained = 101.0;
-        fishContained = 100.0;
+        fuelContained = 100.0;
+        fishContained = 101.0;
         
         expResult = -1.0;
         
@@ -97,9 +97,9 @@ public class FishingControlTest {
         // Test Case #5
         System.out.println("calcBoatSink Test 5");
         fuelContained = 100.0;
-        fishContained = 101.0;
+        fishContained = 99.0;
         
-        expResult = -1.0;
+        expResult = 1.0;
         
         result = instance.calcBoatSink(fuelContained, fishContained);
         
@@ -107,10 +107,32 @@ public class FishingControlTest {
         
         // Test Case #6
         System.out.println("calcBoatSink Test 6");
-        fuelContained = 100.0;
-        fishContained = 99.0;
+        fuelContained = 99.0;
+        fishContained = 100.0;
         
-        expResult = 199.0;
+        expResult = 1.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #7
+        System.out.println("calcBoatSink Test 7");
+        fuelContained = 50.0;
+        fishContained = 100.0;
+        
+        expResult = 50.0;
+        
+        result = instance.calcBoatSink(fuelContained, fishContained);
+        
+        assertEquals(expResult, result, 100);
+        
+        // Test Case #8
+        System.out.println("calcBoatSink Test 8");
+        fuelContained = 100.0;
+        fishContained = 50.0;
+        
+        expResult = 50.0;
         
         result = instance.calcBoatSink(fuelContained, fishContained);
         

@@ -11,7 +11,7 @@ package byui.cit260.fishingChampion.control;
  */
 public class FishingControl {
 
-    private double boatSink;
+
 
   
  
@@ -43,12 +43,13 @@ public class FishingControl {
      * @return 
      */
     public double calcBoatSink(double fuelContained, double fishContained) {
+        
     if (fuelContained > 100 || fishContained > 100) {
         return -1;
     }
     
        int maxWeight = 200;
-       boatSink = maxWeight - (fuelContained - fishContained);
+        double boatSink = maxWeight - (fuelContained + fishContained);
        return boatSink;
     
     }
