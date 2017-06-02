@@ -5,28 +5,41 @@
  */
 package fishingchampion;
 
-import byui.cit260.fishingChampion.model.Shop;
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.Player;
+import byui.cit260.fishingChampion.view.StartProgramView;
 
 /**
  *
  * @author Keith Downing
  */
 public class FishingChampion {
+    
+    private static Game currentGame = null;
+    private static Player player = null;
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        FishingChampion.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        FishingChampion.player = player;
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Shop shop = new Shop();
-        
-        shop.setFishPrice(10);
-        shop.setBaitCost(5);
-        shop.setFuelCost(20);
-        shop.setUpgradeFuelCost(50);
-        shop.setUpgradeSizeCost(50);
-        String itemInfo = shop.toString();
-        System.out.println(itemInfo);
+       StartProgramView startProgramView = new StartProgramView();
+       startProgramView.displayStartProgramView();
     }
     
 }

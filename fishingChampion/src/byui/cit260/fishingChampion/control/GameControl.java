@@ -5,10 +5,23 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import byui.cit260.fishingChampion.model.Player;
+import fishingchampion.FishingChampion;
+
 /**
  *
  * @author kyt09
  */
 public class GameControl {
+
+    public static Player createPlayer(String name) {
+        if (name == null) {
+            return null;
+        }
+        Player player = new Player();
+        player.setName(name);
+        FishingChampion.setPlayer(player);
+        return player;
+    }
     
 }
