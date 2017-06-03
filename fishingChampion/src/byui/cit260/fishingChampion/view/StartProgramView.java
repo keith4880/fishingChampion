@@ -62,7 +62,8 @@ public class StartProgramView {
 
     private boolean doAction(String playersName) {
         if (playersName.length() < 2) {
-            System.out.println("\nInvalid name: " + "The name must be longer than one character.");
+            System.out.println("\nInvalid name: " 
+                    + "The name must be longer than one character.");
             return false;
         }
         Player player = GameControl.createPlayer(playersName);
