@@ -80,7 +80,7 @@ public class MainMenuView {
     private void startNewGame() {
         GameControl.createNewGame(FishingChampion.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        gameMenu.displayGameMenuView();
     }
 
     private void loadGame() {
