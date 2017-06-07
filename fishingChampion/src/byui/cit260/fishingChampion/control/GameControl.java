@@ -5,6 +5,8 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import fishingchampion.FishingChampion;
 
@@ -24,7 +26,9 @@ public class GameControl {
         return player;
     }
     public static void createNewGame(Player player) {
-        System.out.println("\n*** createNewGame stub function called ***");
+        System.out.println("\ncreateNewGame function called");
     }
+
+
     
 }

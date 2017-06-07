@@ -30,7 +30,6 @@ public class HelpMenuView {
         do {
             String helpOption = this.getHelpOption();
             if (helpOption.toUpperCase().equals("Q")) {
-                this.showMainMenu();
                 return;
             }
             done = this.doAction(helpOption);
@@ -59,18 +58,23 @@ public class HelpMenuView {
         switch (choice) {
             case "O":
                 this.displayObjective();
+                System.out.println(helpMenu);
                 break;
             case "F":
                 this.displayFuel();
+                System.out.println(helpMenu);
                 break;
             case "C":
                 this.displayCatch();
+                System.out.println(helpMenu);
                 break;
             case "S":
                 this.displayShop();
+                System.out.println(helpMenu);
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
+                System.out.println(helpMenu);
                 break;
         }
         return false;
@@ -128,16 +132,5 @@ public class HelpMenuView {
                          + "\nsinks!"
                          + "\n----------------------------------------");
     }
-    private void showMainMenu() {
-        System.out.println("\n"
-                         + "\n----------------------------------------"
-                         + "\n| Main Menu                            |"
-                         + "\n----------------------------------------"
-                         + "\nN - New Game"
-                         + "\nL - Load Game"
-                         + "\nS - Save Game"
-                         + "\nH - Get help on how to play"
-                         + "\nQ - Quit Game"
-                         + "\n----------------------------------------");
-    }
+
 }

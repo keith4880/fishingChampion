@@ -31,7 +31,6 @@ public class GameMenuView {
         do {
             String gameOption = this.getGameOption();
             if (gameOption.toUpperCase().equals("Q")) {
-                this.showMainMenu();
                 return;
             }
             done = this.doAction(gameOption);
@@ -60,33 +59,26 @@ public class GameMenuView {
         switch (choice) {
             case "C":
                 this.castLine();
+                System.out.println(gameMenu);
                 break;
             case "M":
                 this.viewMap();
+                System.out.println(gameMenu);
                 break;
             case "L":
                 this.lookAround();
+                System.out.println(gameMenu);
                 break;
             case "B":
                 this.checkBoat();
+                System.out.println(gameMenu);
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
+                System.out.println(gameMenu);
                 break;
         }
         return false;
-    }
-    private void showMainMenu() {
-        System.out.println("\n"
-                         + "\n----------------------------------------"
-                         + "\n| Main Menu                            |"
-                         + "\n----------------------------------------"
-                         + "\nN - New Game"
-                         + "\nL - Load Game"
-                         + "\nS - Save Game"
-                         + "\nH - Get help on how to play"
-                         + "\nQ - Quit Game"
-                         + "\n----------------------------------------");
     }
     private void castLine() {
         FishingView fishView = new FishingView();

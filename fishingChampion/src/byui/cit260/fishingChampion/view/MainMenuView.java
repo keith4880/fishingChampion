@@ -60,18 +60,23 @@ public class MainMenuView {
         switch (choice) {
             case "N":
                 this.startNewGame();
+                System.out.println(menu);
                 break;
             case "L":
                 this.loadGame();
+                System.out.println(menu);
                 break;
             case "S":
                 this.saveGame();
+                System.out.println(menu);
                 break;
             case "H":
                 this.displayHelpMenu();
+                System.out.println(menu);
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
+                System.out.println(menu);
                 break;
         }
         return false;
