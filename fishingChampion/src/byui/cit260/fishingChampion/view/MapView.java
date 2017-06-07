@@ -12,6 +12,18 @@ import java.util.Scanner;
  * @author Keith Downing
  */
 public class MapView {
+    private final String menu;
+    public MapView() {
+            this.menu = "\n"
+                      + "\n----------------------------------------"
+                      + "\n| Map Menu                            |"
+                      + "\n----------------------------------------"
+                      + "\nN - New Map"
+                      + "\nR - New Row"
+                      + "\nC - New Column"
+                      + "\nQ - Quit"
+                      + "\n----------------------------------------";
+    }
 
     public void viewMap() {
         
