@@ -19,6 +19,10 @@ public class Map implements Serializable{
     private double currentColumn;
     private double currentScene;
 
+    public Map(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public double getRowCount() {
         return rowCount;
     }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.fishingChampion.view;
+import byui.cit260.fishingChampion.control.MapControl;
 import java.util.Scanner;
 
 /*
@@ -17,22 +18,42 @@ public class MapView {
         boolean done = false;
         do {
             String mapOption = this.getMapOption();
-            if (mapOption.toUpperCase().equals("Q"))
+            if (mapOption.toUpperCase().equals("X")) {
                 return;
+            } else {
+            }
             
-            done = this.doAction(mapOption);
+           
         }
         while (!done);
     }
 
     private String getMapOption() {
         System.out.println("\n*** getMapOption() function called ***");
-        return "N";
+        return null;
+   
     }
 
-    private boolean doAction(String mapOption) {
-        System.out.println("\n*** doAction() function called ***");
-        return true;
+ 
+    public int doAction(String mapOption) {
+        int choice = 0;
+        switch (choice) {
+            case 'N': //new map
+                this.startNewMap();
+                break;
+            case 'R': // new row
+                this.startNewRow();
+                break;
+            case 'C': //new column
+                this.startNewColumn();
+                break;
+            case 'Q': //quit
+                return choice;
+            default:
+                System.out.println("\n*** Invalid selection *** Try Again");
+                break;
+        }
+        return 0;
     }
     
     public String getInput() {
@@ -54,6 +75,32 @@ public class MapView {
     
     return selection;
     }
+
+    private void startNewMap() {
+        // new map
+        int value = MapControl.createNewMap();
+        if (value < 0){
+            System.out.println("ERROR - Failed to Create New Map");
+        }
+    
+        // Display the map menu
+        MapView mapMenu = new MapView();
+        mapMenu.displayMenu();
+    }
+
+    private void startNewRow() {
+        System.out.println("*** startRow function called ***");
+    }
+
+    private void startNewColumn() {
+        System.out.println("*** startColumn function called ***");
+    }
+
+    private void displayMenu() {
+        System.out.println("*** startColumn function called ***");
+    }
+
+    
 }
     
 
