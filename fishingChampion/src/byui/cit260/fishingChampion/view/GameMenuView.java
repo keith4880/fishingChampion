@@ -6,6 +6,9 @@
 package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.FishingControl;
+import byui.cit260.fishingChampion.model.Boat;
+import byui.cit260.fishingChampion.model.Game;
+import fishingchampion.FishingChampion;
 import java.util.Scanner;
 
 /**
@@ -94,5 +97,8 @@ public class GameMenuView {
     }
     private void checkBoat() {
         System.out.println("\ncheckBoat function called");
+        Game game = FishingChampion.getCurrentGame();
+        Boat boat = game.getBoat();
+        System.out.println("Fuel = " + boat.getFuelContained());
     }
 }

@@ -42,7 +42,7 @@ public class MapView {
 
     private String getMapOption() {
         System.out.println("\n*** getMapOption() function called ***");
-        return null;
+        return "X";
    
     }
 

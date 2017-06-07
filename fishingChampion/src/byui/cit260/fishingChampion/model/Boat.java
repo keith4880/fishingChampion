@@ -23,6 +23,10 @@ public class Boat implements Serializable{
     private int fishContained;
 
     public Boat() {
+        maxWeight = 100;
+        fuelEfficiency = 10.00;
+        fuelContained = 10;
+        fishContained = 0;
     }
     
     

@@ -25,8 +25,10 @@ public class GameControl {
         FishingChampion.setPlayer(player);
         return player;
     }
-    public static void createNewGame(Player player) {
-        System.out.println("\ncreateNewGame function called");
+    public static Game createNewGame(Player player) {
+        Game game = new Game(player);
+        FishingChampion.setCurrentGame(game);
+        return game;
     }
 
 
