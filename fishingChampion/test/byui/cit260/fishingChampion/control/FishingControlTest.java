@@ -34,12 +34,53 @@ public class FishingControlTest {
      */
     @Test
     public void testDetermineCatch() {
-        System.out.println("determineCatch");
-        int fishWeight = 1;
-        int pullStrength = -3;
-        int expResult = -1;
+        // Successful catch
+        System.out.println("determineCatch test 1");
+        int fishWeight = 10;
+        int pullStrength = 10;
+        int expResult = 1;
         FishingControl instance = new FishingControl();
         int result = instance.determineCatch(fishWeight, pullStrength);
+        assertEquals(expResult, result);
+        
+        // Failure to catch
+        System.out.println("determineCatch test 2");
+        fishWeight = 10;
+        pullStrength = 16;
+        expResult = 2;
+        result = instance.determineCatch(fishWeight, pullStrength);
+        assertEquals(expResult, result);
+        
+        // Negative error
+        System.out.println("determineCatch test 3");
+        fishWeight = 10;
+        pullStrength = -10;
+        expResult = -1;
+        result = instance.determineCatch(fishWeight, pullStrength);
+        assertEquals(expResult, result);
+        
+        // Zero error
+        System.out.println("determineCatch test 4");
+        fishWeight = 10;
+        pullStrength = 0;
+        expResult = 0;
+        result = instance.determineCatch(fishWeight, pullStrength);
+        assertEquals(expResult, result);
+        
+        // Too big error
+        System.out.println("determineCatch test 5");
+        fishWeight = 10;
+        pullStrength = 105;
+        expResult = 101;
+        result = instance.determineCatch(fishWeight, pullStrength);
+        assertEquals(expResult, result);
+        
+        // Border successful catch
+        System.out.println("determineCatch test 6");
+        fishWeight = 10;
+        pullStrength = 15;
+        expResult = 1;
+        result = instance.determineCatch(fishWeight, pullStrength);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
