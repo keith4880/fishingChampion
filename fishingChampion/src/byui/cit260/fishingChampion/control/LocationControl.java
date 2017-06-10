@@ -12,11 +12,11 @@ package byui.cit260.fishingChampion.control;
 public class LocationControl {
     public double determineDistance(int row, int column, int newRow, int newColumn, int rowCount, int columnCount) {
         // Row failure
-        if (newRow > rowCount || newRow < 0 || row > rowCount || row < 0)  {
+        if (newRow > rowCount || newRow <= 0 || row > rowCount || row <= 0 || rowCount <= 0)  {
             return -1;
         }
         // Column failure
-        if (newColumn > columnCount || newColumn < 0 || column > columnCount || column < 0) {
+        if (newColumn > columnCount || newColumn <= 0 || column > columnCount || column <= 0 || columnCount <= 0) {
             return -2;
         }
         
