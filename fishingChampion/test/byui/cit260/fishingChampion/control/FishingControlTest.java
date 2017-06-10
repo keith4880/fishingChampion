@@ -58,8 +58,7 @@ public class FishingControlTest {
         double expResult = 0.0;
         double result = instance.calcBoatSink(fuelContained, fishContained);
         assertEquals(expResult, result, 100.0);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+      
         
         // Test Case #2
         System.out.println("calcBoatSink Test 2");

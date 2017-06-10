@@ -36,8 +36,7 @@ public class FishingControl {
         return isCaught;
     }
     
-    /**
-     *
+    /*
      * @param fuelContained
      * @param fishContained
      * @return 
@@ -56,3 +55,15 @@ public class FishingControl {
 
 }
     
+/*
+FOR LOOP EXAMPLE:
+
+for(count = 0; count < 5; count +1)
+
+This for loop will iterate itself before termination a total of 5 times. The
+beginning value is 0 and will continue to add 1 until the value reaches 5 
+due to conditions within that statement.
+
+
+
+*/
