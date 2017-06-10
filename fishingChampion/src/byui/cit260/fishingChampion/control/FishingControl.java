@@ -37,6 +37,7 @@ public class FishingControl {
     }
     
     /*
+     *
      * @param fuelContained
      * @param fishContained
      * @return 
