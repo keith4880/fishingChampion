@@ -13,11 +13,11 @@ import java.io.Serializable;
  */
 public class Shop implements Serializable{
     
-    private int fishPrice;
-    private int fuelCost;
-    private int baitCost;
-    private int upgradeSizeCost;
-    private int upgradeFuelCost;
+    private int fishPrice = 20;
+    private int fuelCost = 10;
+    private int baitCost = 10;
+    private int upgradeSizeCost = 100;
+    private int upgradeFuelCost = 100;
 
     public Shop() {
     }

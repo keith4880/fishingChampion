@@ -1,5 +1,6 @@
 package byui.cit260.fishingChampion.view;
 
+import byui.cit260.fishingChampion.control.ShopControl;
 import java.util.Scanner;
 
 /**
@@ -76,7 +77,19 @@ public class ShopView {
     }
 
     private void buyBait() {
-        System.out.println("*** buyBait function called ***");
+        int buy;
+        buy = ShopControl.buyBait();
+        switch (buy) {
+            case 0:
+                System.out.println("Not enough money.");
+                break;
+            case -1:
+                System.out.println("You can't carry any more bait.");
+                break;
+            case 1:
+                System.out.println("Bait purchased.");
+                break;
+        }
     }
 
     private void buyFuel() {

@@ -8,6 +8,7 @@ package byui.cit260.fishingChampion.view;
 import byui.cit260.fishingChampion.control.FishingControl;
 import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.TackleBox;
 import fishingchampion.FishingChampion;
 import java.util.Scanner;
@@ -107,10 +108,12 @@ public class GameMenuView {
         areaView.viewArea();
     }
     private void checkBoat() {
-        System.out.println("\ncheckBoat function called");
         Game game = FishingChampion.getCurrentGame();
+        Player player = game.getPlayer();
         Boat boat = game.getBoat();
         TackleBox tackleBox = game.getTackleBox();
+        System.out.println(player.getName());
+        System.out.println("Money = " + player.getMoneyAmount());
         System.out.println("Fuel = " + boat.getFuelContained());
         System.out.println("Fish = " + boat.getFishContained());
         System.out.println("Bait = " + tackleBox.getAmountContained() + "/" + tackleBox.getMaxAmount());

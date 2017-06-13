@@ -30,6 +30,9 @@ public class Game {
         return tackleBox;
     }
     
+    public Player getPlayer() {
+        return player;
+    }
     
 
     public String getTotaltime() { return totalTime; }
