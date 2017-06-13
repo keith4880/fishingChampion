@@ -26,6 +26,7 @@ public class GameMenuView {
                       + "\nM - View Map"
                       + "\nL - Look Around"
                       + "\nB - Check Boat"
+                      + "\nS - Enter Marina Shop"
                       + "\nQ - Return to Main Menu"
                       + "\n----------------------------------------";
     }
@@ -77,12 +78,21 @@ public class GameMenuView {
                 this.checkBoat();
                 System.out.println(gameMenu);
                 break;
+            case "S":
+                this.enterShop();
+                System.out.println(gameMenu);
+                break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
                 System.out.println(gameMenu);
                 break;
         }
         return false;
+    }
+    
+    private void enterShop() {
+        ShopView shopView = new ShopView();
+        shopView.displayShopView();
     }
     private void castLine() {
         FishingView fishView = new FishingView();
