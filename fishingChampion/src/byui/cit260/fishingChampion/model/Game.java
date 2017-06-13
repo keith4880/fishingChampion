@@ -9,18 +9,25 @@ public class Game {
     private String totalTime;
     private Player player;
     private Boat boat;
+    private TackleBox tackleBox;
     
     public Game() {
         boat = InventoryControl.createBoat();
+        tackleBox = InventoryControl.createTackleBox();
     }
     
     public Game(Player player) {
         boat = InventoryControl.createBoat();
+        tackleBox = InventoryControl.createTackleBox();
         this.player = player;
     }
 
     public Boat getBoat() {
         return boat;
+    }
+    
+    public TackleBox getTackleBox() {
+        return tackleBox;
     }
     
     

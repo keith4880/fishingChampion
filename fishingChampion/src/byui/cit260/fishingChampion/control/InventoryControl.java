@@ -6,6 +6,7 @@
 package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Boat;
+import byui.cit260.fishingChampion.model.TackleBox;
 
 /**
  *
@@ -15,5 +16,9 @@ public class InventoryControl {
     public static Boat createBoat() {
         Boat boat = new Boat();
         return boat;
+    }
+    public static TackleBox createTackleBox() {
+        TackleBox tackleBox = new TackleBox();
+        return tackleBox;
     }
 }

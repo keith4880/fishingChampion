@@ -8,6 +8,7 @@ package byui.cit260.fishingChampion.view;
 import byui.cit260.fishingChampion.control.FishingControl;
 import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.TackleBox;
 import fishingchampion.FishingChampion;
 import java.util.Scanner;
 
@@ -99,6 +100,11 @@ public class GameMenuView {
         System.out.println("\ncheckBoat function called");
         Game game = FishingChampion.getCurrentGame();
         Boat boat = game.getBoat();
+        TackleBox tackleBox = game.getTackleBox();
         System.out.println("Fuel = " + boat.getFuelContained());
+        System.out.println("Fish = " + boat.getFishContained());
+        System.out.println("Bait = " + tackleBox.getAmountContained() + "/" + tackleBox.getMaxAmount());
+        System.out.println("Fuel Efficiency = " + boat.getFuelEfficiency());
+        System.out.println("Maximum Weight = " + boat.getMaxWeight());
     }
 }

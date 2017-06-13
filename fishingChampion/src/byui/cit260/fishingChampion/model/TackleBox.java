@@ -70,6 +70,8 @@ public class TackleBox implements Serializable{
     
     
     public TackleBox() {
+        maxAmount = 50;
+        amountContained = 20;
     }
     
     
