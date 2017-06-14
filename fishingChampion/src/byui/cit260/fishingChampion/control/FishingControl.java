@@ -5,6 +5,11 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import byui.cit260.fishingChampion.model.Boat;
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.TackleBox;
+import fishingchampion.FishingChampion;
+
 /**
  *
  * @author kyt09
@@ -15,12 +20,12 @@ public class FishingControl {
 
   
  
-    public int generateFish() {
+    public static int generateFish() {
         int fishWeight;
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
                 return fishWeight;
     }
-    public int determineCatch(int fishWeight, int pullStrength) {
+    public static int determineCatch(int fishWeight, int pullStrength) {
         int isCaught;
         if (pullStrength < 0) {
             isCaught = -1;
@@ -35,6 +40,18 @@ public class FishingControl {
         }
         return isCaught;
     }
+
+    public static void addFish(int fishWeight) {
+        Game game = FishingChampion.getCurrentGame();
+        Boat boat = game.getBoat();
+        boat.setFishContained(boat.getFishContained() + fishWeight);
+    }
+
+    public static void subtractBait() {
+        Game game = FishingChampion.getCurrentGame();
+        TackleBox tackleBox = game.getTackleBox();
+        tackleBox.setAmountContained(tackleBox.getAmountContained()-1);
+    }
     
     /*
      *
@@ -42,16 +59,22 @@ public class FishingControl {
      * @param fishContained
      * @return 
      */
-    public double calcBoatSink(double fuelContained, double fishContained) {
-        
-    if (fuelContained > 100 || fishContained > 100) {
-        return -1;
+    public static boolean calcBoatSink() {
+        Game game = FishingChampion.getCurrentGame();
+        Boat boat = game.getBoat();
+        int maxWeight = boat.getMaxWeight();
+        int fuelContained = boat.getFuelContained();
+        int fishContained = boat.getFishContained();
+        int weight = maxWeight - (fuelContained + fishContained);
+        if (weight < 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-       int maxWeight = 200;
-        double boatSink = maxWeight - (fuelContained + fishContained);
-       return boatSink;
-    
+
+    public static void sinkBoat() {
+        System.out.println("\nsinkBoat function called");
     }
 
 }
