@@ -55,7 +55,7 @@ public class MainMenuView extends View {
     private void startNewGame() {
         GameControl.createNewGame(FishingChampion.getPlayer());
         GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayGameMenuView();
+        gameMenu.display();
     }
 
     private void loadGame() {

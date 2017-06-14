@@ -5,87 +5,52 @@
  */
 package byui.cit260.fishingChampion.view;
 
-import byui.cit260.fishingChampion.control.FishingControl;
 import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.TackleBox;
 import fishingchampion.FishingChampion;
-import java.util.Scanner;
 
 /**
  *
  * @author kyt09
  */
-public class GameMenuView {
-    private String gameMenu;
+public class GameMenuView extends View {
     public GameMenuView() {
-        this.gameMenu = "\n----------------------------------------"
-                      + "\n| Game Menu                            |"
-                      + "\n----------------------------------------"
-                      + "\nC - Cast a Line"
-                      + "\nM - View Map"
-                      + "\nL - Look Around"
-                      + "\nB - Check Boat"
-                      + "\nS - Enter Marina Shop"
-                      + "\nQ - Return to Main Menu"
-                      + "\n----------------------------------------";
-    }
-    public void displayGameMenuView() {
-        boolean done = false;
-        System.out.println(gameMenu);
-        do {
-            String gameOption = this.getGameOption();
-            if (gameOption.toUpperCase().equals("Q")) {
-                return;
-            }
-            done = this.doAction(gameOption);
-        } while (!done);
+        super("\n----------------------------------------"
+            + "\n| Game Menu                            |"
+            + "\n----------------------------------------"
+            + "\nC - Cast a Line"
+            + "\nM - View Map"
+            + "\nL - Look Around"
+            + "\nB - Check Boat"
+            + "\nS - Enter Marina Shop"
+            + "\nQ - Return to Main Menu"
+            + "\n----------------------------------------"
+            + "\nPlease select an option using the keyboard.");
     }
 
-    private String getGameOption() {
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        while (!valid) {
-            System.out.println("\nSelect a help option using the keyboard.");
-            value = keyboard.nextLine();
-            value = value.trim();
-            if (value.length() < 1) {
-                System.out.println("\nYou must enter a selection.");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase();
         switch (choice) {
             case "C":
                 this.castLine();
-                System.out.println(gameMenu);
                 break;
             case "M":
                 this.viewMap();
-                System.out.println(gameMenu);
                 break;
             case "L":
                 this.lookAround();
-                System.out.println(gameMenu);
                 break;
             case "B":
                 this.checkBoat();
-                System.out.println(gameMenu);
                 break;
             case "S":
                 this.enterShop();
-                System.out.println(gameMenu);
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
-                System.out.println(gameMenu);
                 break;
         }
         return false;
