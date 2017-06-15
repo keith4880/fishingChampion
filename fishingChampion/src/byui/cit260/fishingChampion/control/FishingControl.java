@@ -66,11 +66,7 @@ public class FishingControl {
         int fuelContained = boat.getFuelContained();
         int fishContained = boat.getFishContained();
         int weight = maxWeight - (fuelContained + fishContained);
-        if (weight < 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return weight < 0;
     }
 
     public static void sinkBoat() {

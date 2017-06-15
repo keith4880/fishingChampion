@@ -23,17 +23,18 @@ public class ShopControl {
         Player player = game.getPlayer();
         TackleBox tackleBox = game.getTackleBox();
         Shop shop = new Shop();
-        int baitPrice = shop.getBaitCost();
+        int baitCost = shop.getBaitCost();
         double money = player.getMoneyAmount();
-        if (money < baitPrice) {
+        if (money < baitCost) {
             return 0;
         } else if (tackleBox.getAmountContained() >= tackleBox.getMaxAmount()) {
             return -1;
         } else {
-            tackleBox.setAmountContained(tackleBox.getAmountContained()+1);
-            player.setMoneyAmount(money - baitPrice);
+            tackleBox.setAmountContained(tackleBox.getAmountContained() + 1);
+            player.setMoneyAmount(money - baitCost);
             return 1;
         }
     }
+
     
 }

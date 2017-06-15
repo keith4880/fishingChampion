@@ -77,6 +77,9 @@ public class FishingView extends View {
                 FishingControl.addFish(fishWeight);
                 FishingControl.subtractBait();
                 boolean boatSink = FishingControl.calcBoatSink();
+                if (boatSink == true) {
+                    FishingControl.sinkBoat();
+                }
                 break;
         }
         return true;
