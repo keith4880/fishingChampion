@@ -5,6 +5,10 @@
  */
 package byui.cit260.fishingChampion.view;
 import byui.cit260.fishingChampion.control.MapControl;
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.Location;
+import byui.cit260.fishingChampion.model.Map;
+import fishingchampion.FishingChampion;
 import java.util.Scanner;
 
 /*
@@ -26,93 +30,25 @@ public class MapView {
     }
 
     public void viewMap() {
-        
-        boolean done = false;
-        do {
-            String mapOption = this.getMapOption();
-            if (mapOption.toUpperCase().equals("X")) {
-                return;
-            } else {
+        Game game = FishingChampion.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        System.out.println("\n   1     2     3     4     5     6     7     8   ");
+        for(int i = 0; i < locations.length; i++) {
+            System.out.println("\n-------------------------------------------------");
+            System.out.print(i);
+            for(int j = 0; j < locations[i].length; j++) {
+                System.out.print("|");
+                if (locations[i][j].getVisited() == true) {
+                    System.out.print(" !! ");
+                } else {
+                    System.out.print(" ?? ");
+                }
+                System.out.print("|");
             }
-            
-           
         }
-        while (!done);
+        System.out.println("\n-------------------------------------------------");
     }
-
-    private String getMapOption() {
-        System.out.println("\n*** getMapOption() function called ***");
-        return "X";
-   
-    }
-
- 
-    public int doAction(String mapOption) {
-        int choice = 0;
-        switch (choice) {
-            case 'N': //new map
-                this.startNewMap();
-                break;
-            case 'R': // new row
-                this.startNewRow();
-                break;
-            case 'C': //new column
-                this.startNewColumn();
-                break;
-            case 'Q': //quit
-                return choice;
-            default:
-                System.out.println("\n*** Invalid selection *** Try Again");
-                break;
-        }
-        return 0;
-    }
-    
-    public String getInput() {
-        Scanner keyboard = new Scanner(System.in);
-        boolean valid = false;
-        String selection = null;
-        
-        while (!valid) {
-            selection = keyboard.nextLine();
-            selection = selection.trim();
-            
-            if (selection.length() < 1) {
-                System.out.println("\n*** Invalid selection *** Tray Again");
-                continue;
-                
-            }
-            break;
-        }
-    
-    return selection;
-    }
-
-    private void startNewMap() {
-        // new map
-        int value = MapControl.createNewMap();
-        if (value < 0){
-            System.out.println("ERROR - Failed to Create New Map");
-        }
-    
-        // Display the map menu
-        MapView mapMenu = new MapView();
-        mapMenu.displayMenu();
-    }
-
-    private void startNewRow() {
-        System.out.println("*** startRow function called ***");
-    }
-
-    private void startNewColumn() {
-        System.out.println("*** startColumn function called ***");
-    }
-
-    private void displayMenu() {
-        System.out.println("*** startColumn function called ***");
-    }
-
-    
 }
     
 

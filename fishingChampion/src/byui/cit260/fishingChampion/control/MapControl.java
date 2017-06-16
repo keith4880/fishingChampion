@@ -15,11 +15,9 @@ public class MapControl {
  
     public static Map createMap() {
         //create the map
-        Map map = new Map (8,8);
-        return null;
-}
-
-    public static int createNewMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Map map = new Map(8, 8);
+        return map;
     }
+
+    
 }

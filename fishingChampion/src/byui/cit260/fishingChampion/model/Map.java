@@ -11,16 +11,33 @@ import java.io.Serializable;
  *
  * @author Keith Downing
  */
-public class Map implements Serializable{
+public class Map implements Serializable {
     //class instance variables.
     private int rowCount;
     private int columnCount;
+    private Location[][] locations;
     private int currentRow;
     private int currentColumn;
     private double currentScene;
 
-    public Map(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Map(int noOfRows, int noOfColumns) {
+        if (noOfRows < 1 || noOfColumns < 1) {
+            System.out.println("The number of rows and columns must be more than zero.");
+            return;
+        }
+        rowCount = noOfRows;
+        columnCount = noOfColumns;
+        this.locations = new Location[noOfRows][noOfColumns];
+        for (int row = 0; row < noOfRows; row++) {
+            for (int column = 0; column < noOfColumns; column++) {
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                location.setVisited(false);
+                locations[row][column] = location;
+            }
+        }
+        
     }
 
     public int getRowCount() {
@@ -61,6 +78,10 @@ public class Map implements Serializable{
 
     public void setCurrentScene(double currentScene) {
         this.currentScene = currentScene;
+    }
+    
+    public Location[][] getLocations() {
+        return locations;
     }
 
     @Override
