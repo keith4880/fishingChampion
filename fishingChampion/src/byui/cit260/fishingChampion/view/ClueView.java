@@ -5,14 +5,19 @@
  */
 package byui.cit260.fishingChampion.view;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Keith Downing
  */
 public class ClueView extends View{
+
+    private final String menu;
     
     public ClueView(){
-        super ("\n"
+        this.menu = "\n----------------------------------------"
+                      + "\n"
              + "\n=========================================="
                     + "\n| Clues Menu                      |"
                     + "\n==================================="
@@ -22,10 +27,40 @@ public class ClueView extends View{
                     + "\n4 - Clue 4"
                     + "\n5 - Clue 5"
                     + "\nX - Exit"
-                    + "\n====================================");   
+                    + "\n====================================";
         
     }
-    
+    public void displayClueView() {
+        boolean done = false;
+        System.out.println(menu);
+        do {
+            String menuOption = this.getMenuOption();
+            if (menuOption.toUpperCase().equals("X"))
+                return;
+            done = this.doAction(menuOption);
+        } while (!done);
+    }
+    private String getMenuOption() {
+        Scanner keyboard = new Scanner(System.in);
+        String value = "";
+        boolean valid = false;
+        while (!valid) {
+            System.out.println("\nSelect a menu option using the keyboard.");
+            value = keyboard.nextLine();
+            value = value.trim();
+            if (value.length() < 1) {
+                System.out.println("\nYou must enter a selection.");
+                continue;
+            }
+            break;
+        }
+        return value;
+    }
+    /**
+     *
+     * @param choice
+     * @return
+     */
     @Override
     public boolean doAction(String choice) {
 
@@ -81,6 +116,8 @@ public class ClueView extends View{
     private void exit() {
         System.out.println("*** Exit function called ***"); 
     }
+
+    
     
 
     

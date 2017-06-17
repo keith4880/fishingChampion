@@ -25,6 +25,7 @@ public class GameMenuView extends View {
             + "\nL - Look Around"
             + "\nB - Check Boat"
             + "\nS - Enter Marina Shop"
+            + "\nI - Interpret Clue"
             + "\nQ - Return to Main Menu"
             + "\n----------------------------------------"
             + "\nPlease select an option using the keyboard.");
@@ -49,6 +50,9 @@ public class GameMenuView extends View {
             case "S":
                 this.enterShop();
                 break;
+            case "I":
+                this.clueView();
+                break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
                 break;
@@ -59,6 +63,10 @@ public class GameMenuView extends View {
     private void enterShop() {
         ShopView shopView = new ShopView();
         shopView.displayShopView();
+    }
+    private void clueView() {
+        ClueView clueView = new ClueView();
+        clueView.displayClueView();
     }
     private void castLine() {
         FishingView fishView = new FishingView();
