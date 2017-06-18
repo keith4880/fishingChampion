@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class InventoryItem implements Serializable {
     private int amount;
     private int maxAmount;
-    private double fuelEfficiency;
     
     public int getAmount(){
         return amount;
@@ -30,13 +29,5 @@ public class InventoryItem implements Serializable {
     
     public void setMaxAmount(int maxAmount) {
         this.maxAmount = maxAmount;
-    }
-    
-    public double getFuelEfficiency() {
-        return fuelEfficiency;
-    }
-    
-    public void setFuelEfficiency(double fuelEfficiency) {
-        this.fuelEfficiency = fuelEfficiency;
     }
 }

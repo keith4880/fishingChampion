@@ -7,7 +7,6 @@ package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.GameControl;
 import fishingchampion.FishingChampion;
-import byui.cit260.fishingChampion.model.Player;
 
 /**
  *
@@ -17,16 +16,16 @@ public class MainMenuView extends View {
     
     public MainMenuView() {
             super("\n"
-                      + "\n----------------------------------------"
-                      + "\n| Main Menu                            |"
-                      + "\n----------------------------------------"
-                      + "\nN - New Game"
-                      + "\nL - Load Game"
-                      + "\nS - Save Game"
-                      + "\nH - Get help on how to play"
-                      + "\nQ - Quit Game"
-                      + "\n----------------------------------------"
-                      + "\nPlease select an option using the keyboard.");
+                + "\n----------------------------------------"
+                + "\n| Main Menu                            |"
+                + "\n----------------------------------------"
+                + "\nN - New Game"
+                + "\nL - Load Game"
+                + "\nS - Save Game"
+                + "\nH - Get help on how to play"
+                + "\nQ - Quit Game"
+                + "\n----------------------------------------"
+                + "\nPlease select an option using the keyboard.");
     }
 
     @Override

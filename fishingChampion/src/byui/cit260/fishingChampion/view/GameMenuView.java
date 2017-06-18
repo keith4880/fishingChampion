@@ -61,7 +61,7 @@ public class GameMenuView extends View {
     
     private void enterShop() {
         ShopView shopView = new ShopView();
-        shopView.displayShopView();
+        shopView.display();
     }
     private void clueView() {
         ClueView clueView = new ClueView();
@@ -88,7 +88,7 @@ public class GameMenuView extends View {
         System.out.println("Fuel = " + inventory[Game.Item.fuel.ordinal()].getAmount());
         System.out.println("Fish = " + inventory[Game.Item.fish.ordinal()].getAmount());
         System.out.println("Bait = " + inventory[Game.Item.bait.ordinal()].getAmount() + "/" + inventory[Game.Item.bait.ordinal()].getMaxAmout());
-        System.out.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getFuelEfficiency());
+        System.out.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getAmount());
         System.out.println("Maximum Weight = " + inventory[Game.Item.maxWeight.ordinal()].getAmount());
     }
 }

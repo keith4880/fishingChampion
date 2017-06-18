@@ -23,7 +23,6 @@ public class GameControl {
         }
         Player player = new Player();
         player.setName(name);
-        player.setMoneyAmount(100);
         FishingChampion.setPlayer(player);
         return player;
     }

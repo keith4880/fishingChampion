@@ -7,7 +7,7 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
-import byui.cit260.fishingChampion.model.Shop;
+import byui.cit260.fishingChampion.model.Purchase;
 import fishingchampion.FishingChampion;
 
 /**
@@ -24,21 +24,64 @@ public class ShopControl {
         return inventory;
     }
 
-    public static int buyBait() {
+    public static int buySell(int item) {
         Game game = FishingChampion.getCurrentGame();
         inventory = game.getInventoryItem();
-        Shop shop = new Shop();
-        int baitCost = shop.getBaitCost();
+        Purchase[] purchase = ShopControl.createPurchase();
+        int cost = purchase[item].getPrice();
         int money = inventory[Game.Item.money.ordinal()].getAmount();
-        if (money < baitCost) {
+        if (money < cost) {
             return 0;
-        } else if (inventory[Game.Item.bait.ordinal()].getAmount() >= inventory[Game.Item.bait.ordinal()].getMaxAmout()) {
+        } else if (item == Game.Item.fish.ordinal() && inventory[item].getAmount() < 1) {
+            return 0;
+        } else if (ShopControl.checkMax(item) == false) {
             return -1;
         } else {
-            inventory[Game.Item.bait.ordinal()].setAmount(inventory[Game.Item.bait.ordinal()].getAmount() + 1);
-            inventory[Game.Item.money.ordinal()].setAmount(money - baitCost);
+            inventory[item].setAmount(inventory[item].getAmount() + purchase[item].getAmount());
+            inventory[Game.Item.money.ordinal()].setAmount(money - cost);
             return 1;
         }
+    }
+
+    private static Purchase[] createPurchase() {
+        Purchase[] purchase = new Purchase[6];
+        
+        Purchase fish = new Purchase();
+        fish.setPrice(-20);
+        fish.setAmount(-10);
+        purchase[Game.Item.fish.ordinal()] = fish;
+        
+        Purchase fuel = new Purchase();
+        fuel.setPrice(10);
+        fuel.setAmount(10);
+        purchase[Game.Item.fuel.ordinal()] = fuel;
+        
+        Purchase bait = new Purchase();
+        bait.setPrice(10);
+        bait.setAmount(1);
+        purchase[Game.Item.bait.ordinal()] = bait;
+        
+        Purchase maxWeight = new Purchase();
+        maxWeight.setPrice(100);
+        maxWeight.setAmount(50);
+        purchase[Game.Item.maxWeight.ordinal()] = maxWeight;
+        
+        Purchase fuelEfficiency = new Purchase();
+        fuelEfficiency.setPrice(100);
+        fuelEfficiency.setAmount(5);
+        purchase[Game.Item.fuelEfficiency.ordinal()] = fuelEfficiency;
+        
+        return purchase;
+    }
+
+    private static boolean checkMax(int item) {
+        Game game = FishingChampion.getCurrentGame();
+        inventory = game.getInventoryItem();
+        if (item == Game.Item.fuel.ordinal()) {
+            return inventory[Game.Item.fish.ordinal()].getAmount() + inventory[Game.Item.fuel.ordinal()].getAmount() + 10 <= inventory[Game.Item.maxWeight.ordinal()].getAmount();
+        } else {
+            return inventory[item].getAmount() + 1 <= inventory[item].getMaxAmout();
+        } 
     }
 
     

@@ -45,7 +45,8 @@ public class InventoryControl {
         inventory[Game.Item.maxWeight.ordinal()] = maxWeight;
         
         InventoryItem fuelEfficiency = new InventoryItem();
-        fuelEfficiency.setFuelEfficiency(10);
+        fuelEfficiency.setAmount(10);
+        fuelEfficiency.setMaxAmount(1000000);
         inventory[Game.Item.fuelEfficiency.ordinal()] = fuelEfficiency;
         
         return inventory;
