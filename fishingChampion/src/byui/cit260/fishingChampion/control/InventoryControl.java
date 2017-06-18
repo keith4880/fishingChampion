@@ -25,7 +25,7 @@ public class InventoryControl {
         inventory[Game.Item.money.ordinal()] = money;
         
         InventoryItem fish = new InventoryItem();
-        fish.setAmount(0);
+        fish.setAmount(89);
         fish.setMaxAmount(1000000);
         inventory[Game.Item.fish.ordinal()] = fish;
         

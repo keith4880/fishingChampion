@@ -21,7 +21,7 @@ public class FishingView extends View {
     
     public void castLine() {
         boolean checkBait = FishingControl.checkBait();
-        if (checkBait = false) {
+        if (checkBait == false) {
             System.out.println("You're out of bait.");
         } else {
             System.out.println("You cast a line into the water.");
@@ -84,7 +84,7 @@ public class FishingView extends View {
         if (fishWeight > 40) {
             System.out.println("\nYou feel a tug on the line that nearly knocks you over.");
         } else if (fishWeight > 30) {
-            System.out.println("\nYou feel a strong on the line.");
+            System.out.println("\nYou feel a strong tug on the line.");
         } else if (fishWeight > 20) {
             System.out.println("\nYou feel a tug on the line.");
         } else if (fishWeight > 10) {

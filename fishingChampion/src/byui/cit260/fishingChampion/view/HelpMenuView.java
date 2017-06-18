@@ -11,70 +11,37 @@ import java.util.Scanner;
  *
  * @author kyt09
  */
-public class HelpMenuView {
-    private String helpMenu;
+public class HelpMenuView  extends View {
     public HelpMenuView() {
-        this.helpMenu = "\n----------------------------------------"
-                      + "\n| Help Menu                            |"
-                      + "\n----------------------------------------"
-                      + "\nO - Objective of the game"
-                      + "\nF - About Fuel"
-                      + "\nC - About Catching Fish"
-                      + "\nS - About Shopping"
-                      + "\nQ - Quit"
-                      + "\n----------------------------------------";
+        super("\n----------------------------------------"
+            + "\n| Help Menu                            |"
+            + "\n----------------------------------------"
+            + "\nO - Objective of the game"
+            + "\nF - About Fuel"
+            + "\nC - About Catching Fish"
+            + "\nS - About Shopping"
+            + "\nQ - Quit"
+            + "\n----------------------------------------");
     }
-    public void displayHelpMenuView() {
-        boolean done = false;
-        System.out.println(helpMenu);
-        do {
-            String helpOption = this.getHelpOption();
-            if (helpOption.toUpperCase().equals("Q")) {
-                return;
-            }
-            done = this.doAction(helpOption);
-        } while (!done);
-    }
-
-    private String getHelpOption() {
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        while (!valid) {
-            System.out.println("\nSelect a help option using the keyboard.");
-            value = keyboard.nextLine();
-            value = value.trim();
-            if (value.length() < 1) {
-                System.out.println("\nYou must enter a selection.");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-
-    private boolean doAction(String choice) {
+    
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase();
         switch (choice) {
             case "O":
                 this.displayObjective();
-                System.out.println(helpMenu);
                 break;
             case "F":
                 this.displayFuel();
-                System.out.println(helpMenu);
                 break;
             case "C":
                 this.displayCatch();
-                System.out.println(helpMenu);
                 break;
             case "S":
                 this.displayShop();
-                System.out.println(helpMenu);
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
-                System.out.println(helpMenu);
                 break;
         }
         return false;

@@ -7,6 +7,7 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
+import byui.cit260.fishingChampion.view.BoatSinkView;
 import fishingchampion.FishingChampion;
 
 /**
@@ -22,7 +23,7 @@ public class FishingControl {
     public static boolean checkBait() {
         Game game = FishingChampion.getCurrentGame();
         InventoryItem[] inventory = game.getInventoryItem();
-        return inventory[Game.Item.bait.ordinal()].getAmount() >= 1;
+        return inventory[Game.Item.bait.ordinal()].getAmount() > 0;
     }
     
     public static int generateFish() {
@@ -70,12 +71,47 @@ public class FishingControl {
         int maxWeight = inventory[Game.Item.maxWeight.ordinal()].getAmount();
         int fuelContained = inventory[Game.Item.fuel.ordinal()].getAmount();
         int fishContained = inventory[Game.Item.fish.ordinal()].getAmount();
+        if (maxWeight == 0) {
+            return false;
+        }
         int weight = maxWeight - (fuelContained + fishContained);
         return weight < 0;
     }
 
     public static void sinkBoat() {
-        System.out.println("\nsinkBoat function called");
+        BoatSinkView boatSinkView = new BoatSinkView();
+        boatSinkView.boatSink();
+    }
+
+    public static void dumpFish() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        inventory[Game.Item.fish.ordinal()].setAmount(0);
+    }
+
+    public static boolean dumpFuel() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        if (inventory[Game.Item.maxWeight.ordinal()].getAmount() >= inventory[Game.Item.fish.ordinal()].getAmount()) {
+            inventory[Game.Item.fuel.ordinal()].setAmount(0);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void trimFish() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        inventory[Game.Item.fish.ordinal()].setAmount(inventory[Game.Item.maxWeight.ordinal()].getAmount() - inventory[Game.Item.fuel.ordinal()].getAmount());
+    }
+    
+    public static void destroyBoat() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        inventory[Game.Item.fish.ordinal()].setAmount(0);
+        inventory[Game.Item.fuel.ordinal()].setAmount(0);
+        inventory[Game.Item.maxWeight.ordinal()].setAmount(0);
     }
 
 }
