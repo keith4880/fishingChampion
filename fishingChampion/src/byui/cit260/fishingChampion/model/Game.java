@@ -7,27 +7,26 @@ package byui.cit260.fishingChampion.model;
 public class Game {
     private String totalTime;
     private Player player;
-    private Boat boat;
-    private TackleBox tackleBox;
+    private InventoryItem[] inventory;
     private Map map;
+    public enum Item {
+        money,
+        fish,
+        fuel,
+        bait,
+        maxWeight,
+        fuelEfficiency;
+    }
     
     public Game() {
     }
-
-    public Boat getBoat() {
-        return boat;
-    }
     
-    public void setBoat(Boat boat) {
-        this.boat = boat;
-    }
+    public InventoryItem[] getInventoryItem() {
+            return inventory;
+    }   
     
-    public TackleBox getTackleBox() {
-        return tackleBox;
-    }
-    
-    public void setTackleBox(TackleBox tackleBox) {
-        this.tackleBox = tackleBox;
+    public void setInventoryItem(InventoryItem[] inventory) {
+        this.inventory = inventory;
     }
     
     public Player getPlayer() {

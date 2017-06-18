@@ -6,10 +6,6 @@
 package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.FishingControl;
-import byui.cit260.fishingChampion.model.Game;
-import byui.cit260.fishingChampion.model.Player;
-import byui.cit260.fishingChampion.model.TackleBox;
-import fishingchampion.FishingChampion;
 
 
 /**
@@ -24,16 +20,14 @@ public class FishingView extends View {
     }
     
     public void castLine() {
-        Game game = FishingChampion.getCurrentGame();
-        Player player = game.getPlayer();
-        TackleBox tackleBox = game.getTackleBox();
-        if (tackleBox.getAmountContained() < 1) {
+        boolean checkBait = FishingControl.checkBait();
+        if (checkBait = false) {
             System.out.println("You're out of bait.");
         } else {
             System.out.println("You cast a line into the water.");
             this.fishWeight = FishingControl.generateFish();
             boolean fish = this.getPrompt(fishWeight);
-            if (fish = false) {
+            if (fish == false) {
                 return;
             } else {
                 System.out.println("\nEnter a number to indicate how hard you pull.");

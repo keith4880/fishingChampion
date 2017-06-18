@@ -5,9 +5,8 @@
  */
 package byui.cit260.fishingChampion.control;
 
-import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
-import byui.cit260.fishingChampion.model.TackleBox;
+import byui.cit260.fishingChampion.model.InventoryItem;
 import fishingchampion.FishingChampion;
 
 /**
@@ -20,6 +19,12 @@ public class FishingControl {
 
   
  
+    public static boolean checkBait() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        return inventory[Game.Item.bait.ordinal()].getAmount() >= 1;
+    }
+    
     public static int generateFish() {
         int fishWeight;
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
@@ -43,14 +48,14 @@ public class FishingControl {
 
     public static void addFish(int fishWeight) {
         Game game = FishingChampion.getCurrentGame();
-        Boat boat = game.getBoat();
-        boat.setFishContained(boat.getFishContained() + fishWeight);
+        InventoryItem[] inventory = game.getInventoryItem();
+        inventory[Game.Item.fish.ordinal()].setAmount(inventory[Game.Item.fish.ordinal()].getAmount() + fishWeight);
     }
 
     public static void subtractBait() {
         Game game = FishingChampion.getCurrentGame();
-        TackleBox tackleBox = game.getTackleBox();
-        tackleBox.setAmountContained(tackleBox.getAmountContained()-1);
+        InventoryItem[] inventory = game.getInventoryItem();
+        inventory[Game.Item.bait.ordinal()].setAmount(inventory[Game.Item.bait.ordinal()].getAmount()-1);
     }
     
     /*
@@ -61,10 +66,10 @@ public class FishingControl {
      */
     public static boolean calcBoatSink() {
         Game game = FishingChampion.getCurrentGame();
-        Boat boat = game.getBoat();
-        int maxWeight = boat.getMaxWeight();
-        int fuelContained = boat.getFuelContained();
-        int fishContained = boat.getFishContained();
+        InventoryItem[] inventory = game.getInventoryItem();
+        int maxWeight = inventory[Game.Item.maxWeight.ordinal()].getAmount();
+        int fuelContained = inventory[Game.Item.fuel.ordinal()].getAmount();
+        int fishContained = inventory[Game.Item.fish.ordinal()].getAmount();
         int weight = maxWeight - (fuelContained + fishContained);
         return weight < 0;
     }

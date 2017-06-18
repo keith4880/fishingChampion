@@ -5,11 +5,10 @@
  */
 package byui.cit260.fishingChampion.control;
 
-import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
-import byui.cit260.fishingChampion.model.TackleBox;
 import fishingchampion.FishingChampion;
 
 /**
@@ -17,7 +16,7 @@ import fishingchampion.FishingChampion;
  * @author kyt09
  */
 public class GameControl {
-
+    
     public static Player createPlayer(String name) {
         if (name == null) {
             return null;
@@ -31,15 +30,15 @@ public class GameControl {
     public static Game createNewGame(Player player) {
         Game game = new Game();
         game.setPlayer(player);
-        TackleBox tackleBox = new TackleBox();
-        game.setTackleBox(tackleBox);
-        Boat boat = new Boat();
-        game.setBoat(boat);
+        InventoryItem[] inventory = InventoryControl.createInventoryList();
+        game.setInventoryItem(inventory);
         Map map = MapControl.createMap();
         game.setMap(map);
         FishingChampion.setCurrentGame(game);
         return game;
     }
+    
+    
 
 
     

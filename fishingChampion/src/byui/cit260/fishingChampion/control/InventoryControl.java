@@ -5,20 +5,49 @@
  */
 package byui.cit260.fishingChampion.control;
 
-import byui.cit260.fishingChampion.model.Boat;
-import byui.cit260.fishingChampion.model.TackleBox;
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.InventoryItem;
 
 /**
  *
  * @author kyt09
  */
 public class InventoryControl {
-    public static Boat createBoat() {
-        Boat boat = new Boat();
-        return boat;
-    }
-    public static TackleBox createTackleBox() {
-        TackleBox tackleBox = new TackleBox();
-        return tackleBox;
+    
+    
+    
+    public static InventoryItem[] createInventoryList() {
+        InventoryItem[] inventory = new InventoryItem[6];
+        
+        InventoryItem money = new InventoryItem();
+        money.setAmount(100);
+        money.setMaxAmount(1000000);
+        inventory[Game.Item.money.ordinal()] = money;
+        
+        InventoryItem fish = new InventoryItem();
+        fish.setAmount(0);
+        fish.setMaxAmount(1000000);
+        inventory[Game.Item.fish.ordinal()] = fish;
+        
+        InventoryItem fuel = new InventoryItem();
+        fuel.setAmount(10);
+        fuel.setMaxAmount(1000000);
+        inventory[Game.Item.fuel.ordinal()] = fuel;
+        
+        InventoryItem bait = new InventoryItem();
+        bait.setAmount(20);
+        bait.setMaxAmount(50);
+        inventory[Game.Item.bait.ordinal()] = bait;
+        
+        InventoryItem maxWeight = new InventoryItem();
+        maxWeight.setAmount(100);
+        maxWeight.setMaxAmount(1000000);
+        inventory[Game.Item.maxWeight.ordinal()] = maxWeight;
+        
+        InventoryItem fuelEfficiency = new InventoryItem();
+        fuelEfficiency.setFuelEfficiency(10);
+        inventory[Game.Item.fuelEfficiency.ordinal()] = fuelEfficiency;
+        
+        return inventory;
     }
 }

@@ -5,10 +5,9 @@
  */
 package byui.cit260.fishingChampion.view;
 
-import byui.cit260.fishingChampion.model.Boat;
 import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Player;
-import byui.cit260.fishingChampion.model.TackleBox;
 import fishingchampion.FishingChampion;
 
 /**
@@ -83,14 +82,13 @@ public class GameMenuView extends View {
     private void checkBoat() {
         Game game = FishingChampion.getCurrentGame();
         Player player = game.getPlayer();
-        Boat boat = game.getBoat();
-        TackleBox tackleBox = game.getTackleBox();
+        InventoryItem[] inventory = game.getInventoryItem();
         System.out.println(player.getName());
-        System.out.println("Money = " + player.getMoneyAmount());
-        System.out.println("Fuel = " + boat.getFuelContained());
-        System.out.println("Fish = " + boat.getFishContained());
-        System.out.println("Bait = " + tackleBox.getAmountContained() + "/" + tackleBox.getMaxAmount());
-        System.out.println("Fuel Efficiency = " + boat.getFuelEfficiency());
-        System.out.println("Maximum Weight = " + boat.getMaxWeight());
+        System.out.println("Money = " + inventory[Game.Item.money.ordinal()].getAmount());
+        System.out.println("Fuel = " + inventory[Game.Item.fuel.ordinal()].getAmount());
+        System.out.println("Fish = " + inventory[Game.Item.fish.ordinal()].getAmount());
+        System.out.println("Bait = " + inventory[Game.Item.bait.ordinal()].getAmount() + "/" + inventory[Game.Item.bait.ordinal()].getMaxAmout());
+        System.out.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getFuelEfficiency());
+        System.out.println("Maximum Weight = " + inventory[Game.Item.maxWeight.ordinal()].getAmount());
     }
 }
