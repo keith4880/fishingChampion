@@ -80,7 +80,10 @@ public class FishingControl {
 
     public static void sinkBoat() {
         BoatSinkView boatSinkView = new BoatSinkView();
-        boatSinkView.boatSink();
+        boolean done = false;
+        do {
+            done = boatSinkView.boatSink();
+        } while (!done);
     }
 
     public static void dumpFish() {

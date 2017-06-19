@@ -6,15 +6,15 @@
 package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.FishingControl;
-import java.util.Scanner;
 
 /**
  *
  * @author kyt09
  */
-public class BoatSinkView {
+public class BoatSinkView extends View {
+    private boolean done;
     
-    public void boatSink() {
+    public boolean boatSink() {
         String Menu = "\n----------------------------------------"
                     + "\n|Your boat is sinking.                 |"
                     + "\n----------------------------------------"
@@ -26,25 +26,11 @@ public class BoatSinkView {
                     + "\nPlease select an option before it's too late.";
         System.out.println(Menu);
         this.display();
+        return done;
     }
     
-    private String getInput() {
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        while (!valid) {
-            value = keyboard.nextLine();
-            value = value.trim();
-            if (value.length() < 1) {
-                System.out.println("\nYou must enter a selection.");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
-    
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String choice) {
         choice = choice.toUpperCase();
         switch (choice) {
             case "I":
@@ -62,33 +48,22 @@ public class BoatSinkView {
         }
         return true;
     }
-    
-    private void display() {
-        boolean done = false;
-        do {
-            String value = this.getInput();
-            if (value.toUpperCase().equals("Q"))  {
-                this.sinkBoat();
-                System.out.println("\nYour boat sank.");
-                return;
-            } else {
-            done = this.doAction(value);
-            }
-        } while (!done);
-    }
 
     private void dumpFish() {
         FishingControl.dumpFish();
         System.out.println("\nFish dumped.");
+        this.done = true;
     }
 
     private void dumpFuel() {
         boolean fuel = FishingControl.dumpFuel();
         if (fuel == true) {
             System.out.println("\nFuel dumped.");
+            this.done = true;
         } else {
             System.out.println("\nThe fish are still too heavy. Your boat sank.");
             this.sinkBoat();
+            this.done = true;
         }
     }
 
@@ -97,13 +72,16 @@ public class BoatSinkView {
         if (chance > 30) {
             FishingControl.trimFish();
             System.out.println("\nYou made it to shore and dumped your extra fish.");
+            this.done = true;
         } else {
             this.sinkBoat();
             System.out.println("\nThe boat sank before you could make it to shore.");
+            this.done = true;
         }
     }
 
     private void sinkBoat() {
         FishingControl.destroyBoat();
+        this.done = true;
     }
 }

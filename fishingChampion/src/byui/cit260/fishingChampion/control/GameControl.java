@@ -42,10 +42,11 @@ public class GameControl {
     static void assignScenesToLocations(Map map, Scene[] scenes) {
         Location[][] locations = map.getLocations();
         
-        for (int i = 0; i < scenes.length; i++) {
+        for (Scene scene : scenes) {
             int[] coordinates = randomLocation(locations);
-            locations[coordinates[0]][coordinates[1]].setScene(scenes[i]);
+            locations[coordinates[0]][coordinates[1]].setScene(scene);
         }
+        
         
     }
     
@@ -62,6 +63,25 @@ public class GameControl {
         } while (!done);
         int[] coordinates = {row, column};
         return coordinates;
+    }
+
+    public static void placePlayer() {
+        Game game = FishingChampion.getCurrentGame();
+        Map map = game.getMap();
+        Player player = game.getPlayer();
+        Location[][] locations = map.getLocations();
+        for (int i = 0; i < locations.length; i++) {
+            for (int j = 0; j < locations[i].length; j++) {
+                Scene scene = locations[i][j].getScene();
+                if (scene != null) {
+                    if ("ST".equals(scene.getDisplaySymbol())) {
+                        locations[i][j].setVisited(true);
+                        player.setRow(i);
+                        player.setColumn(j);
+                    }
+                }
+            }
+        }
     }
     
     

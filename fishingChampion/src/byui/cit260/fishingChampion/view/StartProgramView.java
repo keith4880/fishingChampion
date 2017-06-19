@@ -7,7 +7,6 @@ package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.GameControl;
 import byui.cit260.fishingChampion.model.Player;
-import java.util.Scanner;
 
 /**
  *

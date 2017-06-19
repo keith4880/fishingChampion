@@ -26,7 +26,12 @@ public class Map implements Serializable {
         shop2,
         shop3,
         shop4,
-        shop5;
+        shop5,
+        man1,
+        man2,
+        man3,
+        man4,
+        man5;
     }
 
     public Map(int noOfRows, int noOfColumns) {

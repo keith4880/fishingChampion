@@ -34,7 +34,7 @@ public class MapControl {
         
         Scene championFishScene = new Scene();
         championFishScene.setDescription(
-            "There are no shops in sight.");
+            "There are no shops or people in sight.");
         championFishScene.setDisplaySymbol("--");
         scenes[Map.SceneType.championFish.ordinal()] = championFishScene;
         
@@ -48,8 +48,15 @@ public class MapControl {
         scenes[Map.SceneType.shop4.ordinal()] = shopScene;
         scenes[Map.SceneType.shop5.ordinal()] = shopScene;
         
+        Scene fishermanScene = new Scene();
+        fishermanScene.setDescription(
+                "A fisherman sits in a small boat nearby.");
+        fishermanScene.setDisplaySymbol("FI");
+        scenes[Map.SceneType.man1.ordinal()] = fishermanScene;
+        scenes[Map.SceneType.man2.ordinal()] = fishermanScene;
+        scenes[Map.SceneType.man3.ordinal()] = fishermanScene;
+        scenes[Map.SceneType.man4.ordinal()] = fishermanScene;
+        scenes[Map.SceneType.man5.ordinal()] = fishermanScene;
         return scenes;
     }
-
-    
 }

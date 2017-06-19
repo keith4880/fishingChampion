@@ -18,6 +18,24 @@ public class Player implements Serializable{
     private String name;
     private double bestTime;
     private double moneyAmount;
+    private int row;
+    private int column;
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
 
     public String getName() {
         return name;

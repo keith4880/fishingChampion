@@ -5,8 +5,6 @@
  */
 package byui.cit260.fishingChampion.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author kyt09
