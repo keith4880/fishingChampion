@@ -7,8 +7,10 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
+import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
+import byui.cit260.fishingChampion.model.Scene;
 import fishingchampion.FishingChampion;
 
 /**
@@ -35,6 +37,31 @@ public class GameControl {
         game.setMap(map);
         FishingChampion.setCurrentGame(game);
         return game;
+    }
+
+    static void assignScenesToLocations(Map map, Scene[] scenes) {
+        Location[][] locations = map.getLocations();
+        
+        for (int i = 0; i < scenes.length; i++) {
+            int[] coordinates = randomLocation(locations);
+            locations[coordinates[0]][coordinates[1]].setScene(scenes[i]);
+        }
+        
+    }
+    
+    private static int[] randomLocation(Location[][] locations) {
+        boolean done = false;
+        int row;
+        int column;
+        do {
+            row = (int) Math.round(Math.random() * 8 + 1);
+            column = (int) Math.round(Math.random() * 8 + 1);
+            if (row > 0 && row < locations.length && column > 0 && column < locations[0].length && locations[row][column].getScene() == null) {
+                done = true;
+            }
+        } while (!done);
+        int[] coordinates = {row, column};
+        return coordinates;
     }
     
     

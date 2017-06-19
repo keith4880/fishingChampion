@@ -16,7 +16,7 @@ public class Scene implements Serializable{
     // class instance variables
     private String description;
     private String travelTime;
-    private double displaySymbol;
+    private String displaySymbol;
     private String clue;
 
     public String getDescription() {
@@ -35,11 +35,11 @@ public class Scene implements Serializable{
         this.travelTime = travelTime;
     }
 
-    public double getDisplaySymbol() {
+    public String getDisplaySymbol() {
         return displaySymbol;
     }
 
-    public void setDisplaySymbol(double displaySymbol) {
+    public void setDisplaySymbol(String displaySymbol) {
         this.displaySymbol = displaySymbol;
     }
 
@@ -56,7 +56,7 @@ public class Scene implements Serializable{
         int hash = 7;
         hash = 59 * hash + Objects.hashCode(this.description);
         hash = 59 * hash + Objects.hashCode(this.travelTime);
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.displaySymbol) ^ (Double.doubleToLongBits(this.displaySymbol) >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.displaySymbol);
         hash = 59 * hash + Objects.hashCode(this.clue);
         return hash;
     }
@@ -79,7 +79,7 @@ public class Scene implements Serializable{
             return false;
         }
         final Scene other = (Scene) obj;
-        if (Double.doubleToLongBits(this.displaySymbol) != Double.doubleToLongBits(other.displaySymbol)) {
+        if (!Objects.equals(this.displaySymbol, other.displaySymbol)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {

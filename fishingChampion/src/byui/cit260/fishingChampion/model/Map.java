@@ -19,6 +19,15 @@ public class Map implements Serializable {
     private int currentRow;
     private int currentColumn;
     private double currentScene;
+    public enum SceneType {
+        start,
+        championFish,
+        shop1,
+        shop2,
+        shop3,
+        shop4,
+        shop5;
+    }
 
     public Map(int noOfRows, int noOfColumns) {
         if (noOfRows < 1 || noOfColumns < 1) {

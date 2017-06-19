@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package byui.cit260.fishingChampion.view;
-import byui.cit260.fishingChampion.control.MapControl;
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
+import byui.cit260.fishingChampion.model.Scene;
 import fishingchampion.FishingChampion;
-import java.util.Scanner;
 
 /*
  *
@@ -40,7 +39,12 @@ public class MapView {
             for(int j = 0; j < locations[i].length; j++) {
                 System.out.print("|");
                 if (locations[i][j].getVisited() == true) {
-                    System.out.print(" !! ");
+                    Scene scene = locations[i][j].getScene();
+                    if (scene == null) {
+                        System.out.print("--");
+                    } else {
+                        System.out.print(scene.getDisplaySymbol());
+                    }
                 } else {
                     System.out.print(" ?? ");
                 }
