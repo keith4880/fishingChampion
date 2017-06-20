@@ -68,7 +68,7 @@ public class ShopControl {
         
         Purchase fuelEfficiency = new Purchase();
         fuelEfficiency.setPrice(100);
-        fuelEfficiency.setAmount(5);
+        fuelEfficiency.setAmount(1);
         purchase[Game.Item.fuelEfficiency.ordinal()] = fuelEfficiency;
         
         return purchase;

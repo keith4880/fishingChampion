@@ -11,37 +11,56 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import byui.cit260.fishingChampion.model.Game;
+import byui.cit260.fishingChampion.model.InventoryItem;
+import byui.cit260.fishingChampion.model.Location;
+import byui.cit260.fishingChampion.model.Map;
+import byui.cit260.fishingChampion.model.Player;
+import fishingchampion.FishingChampion;
+
 /**
  *
  * @author kyt09
  */
 public class LocationControl {
-    public double determineDistance(int row, int column, int newRow, int newColumn, int rowCount, int columnCount) {
-        // Row failure
-        if (newRow > rowCount || newRow <= 0 || row > rowCount || row <= 0 || rowCount <= 0)  {
-            return -1;
-        }
-        // Column failure
-        if (newColumn > columnCount || newColumn <= 0 || column > columnCount || column <= 0 || columnCount <= 0) {
-            return -2;
-        }
-        
+
+    public static boolean checkValid(int row, int column) {
+        Game game = FishingChampion.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        return !(row > locations.length || column > locations[1].length || row < 0 || column < 0);
+    }
+    public static double determineDistance(int newRow, int newColumn) {
+        Game game = FishingChampion.getCurrentGame();
+        Player player = game.getPlayer();
+        int row = player.getRow();
+        int column = player.getColumn();
         double distance = Math.sqrt((Math.pow(newRow - row, 2)) + (Math.pow(newColumn - column, 2)));
-        
         return distance;
     }
     
-    public double calcFuelNeeded(double distance, double fuelEfficiency) {
-        if (distance < 0) {
+    public static int calcFuelNeeded(double distance) {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        int fuelEfficiency = inventory[Game.Item.fuelEfficiency.ordinal()].getAmount();
+        int fuelNeeded = (int) distance / fuelEfficiency;
+        int fuelContained = inventory[Game.Item.fuel.ordinal()].getAmount();
+        if (fuelNeeded > fuelContained) {
             return -1;
         }
         
-        if (fuelEfficiency <= 0) {
-            return -2;
-        }
-        
-        double fuelNeeded = distance / fuelEfficiency;
-        
         return fuelNeeded;
+    }
+
+    public static void movePlayer(int row, int column, int fuel) {
+        Game game = FishingChampion.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        InventoryItem[] inventory = game.getInventoryItem();
+        Player player = game.getPlayer();
+        player.setRow(row);
+        player.setColumn(column);
+        inventory[Game.Item.fuel.ordinal()].setAmount(inventory[Game.Item.fuel.ordinal()].getAmount() - fuel);
+        locations[row][column].setVisited(true);
     }
 }

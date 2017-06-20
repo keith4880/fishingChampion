@@ -74,6 +74,7 @@ public class GameMenuView extends View {
     private void viewMap() {
         MapView mapView = new MapView();
         mapView.viewMap();
+        mapView.display();
     }
     private void lookAround() {
         AreaView areaView = new AreaView();
