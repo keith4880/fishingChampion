@@ -10,5 +10,10 @@ package byui.cit260.fishingChampion.control;
  * @author Keith Downing
  */
 public class ClueControl {
+
+    public static String getClue() {
+        String clue = ("\ngetClue function called");
+        return clue;
+    }
     
 }
