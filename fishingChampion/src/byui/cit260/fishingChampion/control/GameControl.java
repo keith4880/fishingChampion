@@ -50,7 +50,7 @@ public class GameControl {
         
     }
     
-    private static int[] randomLocation(Location[][] locations) {
+    public static int[] randomLocation(Location[][] locations) {
         boolean done = false;
         int row;
         int column;

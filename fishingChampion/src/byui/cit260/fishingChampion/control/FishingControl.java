@@ -36,11 +36,14 @@ public class FishingControl {
         Map map = game.getMap();
         Location[][] locations = map.getLocations();
         Scene scene = locations[player.getRow()][player.getColumn()].getScene();
+        int chance = (int) Math.round(Math.random() * 50 + 1);
         if (scene == null) {
         } else if ("--".equals(scene.getDisplaySymbol())) {
-            int fishWeight;
-            fishWeight = (int) Math.round(Math.random() * 100 +101);
-            return fishWeight;
+            if (chance > 30) {
+                int fishWeight;
+                fishWeight = (int) Math.round(Math.random() * 100 +101);
+                return fishWeight;
+            }
         }
         int fishWeight;
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
@@ -130,6 +133,24 @@ public class FishingControl {
         inventory[Game.Item.fish.ordinal()].setAmount(0);
         inventory[Game.Item.fuel.ordinal()].setAmount(0);
         inventory[Game.Item.maxWeight.ordinal()].setAmount(0);
+    }
+
+    public static void catchChampion(int fishWeight) {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        FishingControl.moveChampion();
+        inventory[Game.Item.fish.ordinal()].setAmount(inventory[Game.Item.fish.ordinal()].getAmount() + fishWeight);
+    }
+
+    private static void moveChampion() {
+        Game game = FishingChampion.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        Player player = game.getPlayer();
+        Scene championFish = locations[player.getRow()][player.getColumn()].getScene();
+        locations[player.getRow()][player.getColumn()].setScene(null);
+        int[] coordinates = GameControl.randomLocation(locations);
+        locations[coordinates[0]][coordinates[1]].setScene(championFish);
     }
 
 }

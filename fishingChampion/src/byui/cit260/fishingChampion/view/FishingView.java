@@ -46,42 +46,60 @@ public class FishingView extends View {
             System.out.println("Please enter a valid selection.");
             return false;
         }
-        int isCaught = FishingControl.determineCatch(fishWeight, pullStrength);
-        switch (isCaught) {
-            case -1:
-                System.out.println("\nYou toss your fishing line into the water."
-                                 + "\nWhy did you do that?");
+        if (fishWeight > 99) {
+            if (pullStrength < 100) {
+                System.out.println("The fish escapes.");
+                return true;
+            } else {
+                FishingControl.catchChampion(fishWeight);
                 FishingControl.subtractBait();
-                break;
-            case 0:
-                System.out.println("\nYou stand and stare at the water as the fish escapes.");
-                FishingControl.subtractBait();
-                break;
-            case 101:
-                System.out.println("\nYou pull so hard, you fall into the water."
-                                 + "\nThe fish escapes as you climb back on.");
-                FishingControl.subtractBait();
-                break;
-            case 2:
-                System.out.println("\nThe fish escapes.");
-                FishingControl.subtractBait();
-                break;
-            case 1:
-                System.out.println("\nYou catch a " + fishWeight + "-pound fish.");
-                FishingControl.addFish(fishWeight);
-                FishingControl.subtractBait();
+                System.out.println("You caught a " + fishWeight + "-pound fish!");
                 boolean boatSink = FishingControl.calcBoatSink();
-                if (boatSink == true) {
-                    FishingControl.sinkBoat();
-                }
-                break;
+                    if (boatSink == true) {
+                        FishingControl.sinkBoat();
+                    }
+                return true;
+            }
+        } else {
+            int isCaught = FishingControl.determineCatch(fishWeight, pullStrength);
+            switch (isCaught) {
+                case -1:
+                    System.out.println("\nYou toss your fishing line into the water."
+                                     + "\nWhy did you do that?");
+                    FishingControl.subtractBait();
+                    break;
+                case 0:
+                    System.out.println("\nYou stand and stare at the water as the fish escapes.");
+                    FishingControl.subtractBait();
+                    break;
+                case 101:
+                    System.out.println("\nYou pull so hard, you fall into the water."
+                                     + "\nThe fish escapes as you climb back on.");
+                    FishingControl.subtractBait();
+                    break;
+                case 2:
+                    System.out.println("\nThe fish escapes.");
+                    FishingControl.subtractBait();
+                    break;
+                case 1:
+                    System.out.println("\nYou catch a " + fishWeight + "-pound fish.");
+                    FishingControl.addFish(fishWeight);
+                    FishingControl.subtractBait();
+                    boolean boatSink = FishingControl.calcBoatSink();
+                    if (boatSink == true) {
+                        FishingControl.sinkBoat();
+                    }
+                        break;
+            }
+            return true;
         }
-        return true;
     }
 
 
     private boolean getPrompt(int fishWeight) {
-        if (fishWeight > 40) {
+        if (fishWeight > 99) {
+            System.out.println("\nYou barely feel a tug on the line.");
+        } else if (fishWeight > 40) {
             System.out.println("\nYou feel a tug on the line that nearly knocks you over.");
         } else if (fishWeight > 30) {
             System.out.println("\nYou feel a strong tug on the line.");
