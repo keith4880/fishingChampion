@@ -7,6 +7,10 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
+import byui.cit260.fishingChampion.model.Location;
+import byui.cit260.fishingChampion.model.Map;
+import byui.cit260.fishingChampion.model.Player;
+import byui.cit260.fishingChampion.model.Scene;
 import byui.cit260.fishingChampion.view.BoatSinkView;
 import fishingchampion.FishingChampion;
 
@@ -27,9 +31,20 @@ public class FishingControl {
     }
     
     public static int generateFish() {
+        Game game = FishingChampion.getCurrentGame();
+        Player player = game.getPlayer();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        Scene scene = locations[player.getRow()][player.getColumn()].getScene();
+        if (scene == null) {
+        } else if ("--".equals(scene.getDisplaySymbol())) {
+            int fishWeight;
+            fishWeight = (int) Math.round(Math.random() * 100 +101);
+            return fishWeight;
+        }
         int fishWeight;
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
-                return fishWeight;
+        return fishWeight;
     }
     public static int determineCatch(int fishWeight, int pullStrength) {
         int isCaught;
