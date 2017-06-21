@@ -5,7 +5,8 @@
  */
 package byui.cit260.fishingChampion.view;
 
-import java.util.Scanner;
+import byui.cit260.fishingChampion.model.Game;
+import fishingchampion.FishingChampion;
 
 /**
  *
@@ -13,49 +14,22 @@ import java.util.Scanner;
  */
 public class ClueView extends View{
 
-    private final String menu;
-    
     public ClueView(){
-        this.menu = "\n----------------------------------------"
-                      + "\n"
-             + "\n=========================================="
-                    + "\n| Clues Menu                      |"
-                    + "\n==================================="
-                    + "\n1 - Clue 1"
-                    + "\n2 - Clue 2"
-                    + "\n3 - Clue 3"
-                    + "\n4 - Clue 4"
-                    + "\n5 - Clue 5"
-                    + "\nX - Exit"
-                    + "\n====================================";
+        super("\n-----------------------------------"
+            + "\n"
+            + "\n==================================="
+            + "\n| Clues Menu                      |"
+            + "\n==================================="
+            + "\n1 - Clue 1"
+            + "\n2 - Clue 2"
+            + "\n3 - Clue 3"
+            + "\n4 - Clue 4"
+            + "\n5 - Clue 5"
+            + "\nQ - Quit"
+            + "\n================================== ");
         
     }
-    public void displayClueView() {
-        boolean done = false;
-        System.out.println(menu);
-        do {
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("X"))
-                return;
-            done = this.doAction(menuOption);
-        } while (!done);
-    }
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in);
-        String value = "";
-        boolean valid = false;
-        while (!valid) {
-            System.out.println("\nSelect a menu option using the keyboard.");
-            value = keyboard.nextLine();
-            value = value.trim();
-            if (value.length() < 1) {
-                System.out.println("\nYou must enter a selection.");
-                continue;
-            }
-            break;
-        }
-        return value;
-    }
+
     /**
      *
      * @param choice
@@ -82,9 +56,6 @@ public class ClueView extends View{
                 case "5": //Clue 5
                     this.clue5();
                     break;
-                case "X": // Exit
-                    this.exit();
-                    break;
                 default:
                     System.out.println("\n*** Invalid selection *** Try Again");
                     break;
@@ -95,26 +66,33 @@ public class ClueView extends View{
 }
 
     private void clue1() {
-        System.out.println("*** viewclue1 function called ***"); 
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        System.out.println(clues[0]); 
     }
 
     private void clue2() {
-        System.out.println("*** viewclue2 function called ***"); 
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        System.out.println(clues[1]); 
     }
 
     private void clue3() {
-        System.out.println("*** viewclue3 function called ***"); 
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        System.out.println(clues[2]); 
     }
 
     private void clue4() {
-        System.out.println("*** viewclue4 function called ***"); 
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        System.out.println(clues[3]); 
     }
 
     private void clue5() {
-        System.out.println("*** viewclue5 function called ***"); 
-    }
-    private void exit() {
-        System.out.println("*** Exit function called ***"); 
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        System.out.println(clues[4]);  
     }
 
     

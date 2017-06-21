@@ -65,7 +65,7 @@ public class GameMenuView extends View {
     }
     private void clueView() {
         ClueView clueView = new ClueView();
-        clueView.displayClueView();
+        clueView.display();
     }
     private void castLine() {
         FishingView fishView = new FishingView();

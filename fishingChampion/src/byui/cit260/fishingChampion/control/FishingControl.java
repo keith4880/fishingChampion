@@ -137,9 +137,13 @@ public class FishingControl {
 
     public static void catchChampion(int fishWeight) {
         Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
         InventoryItem[] inventory = game.getInventoryItem();
         FishingControl.moveChampion();
         inventory[Game.Item.fish.ordinal()].setAmount(inventory[Game.Item.fish.ordinal()].getAmount() + fishWeight);
+        for (String clue : clues) {
+            clue = null;
+        }
     }
 
     private static void moveChampion() {

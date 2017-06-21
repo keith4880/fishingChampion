@@ -9,6 +9,15 @@ public class Game {
     private Player player;
     private InventoryItem[] inventory;
     private Map map;
+    private String[] clues;
+
+    public String[] getClues() {
+        return clues;
+    }
+
+    public void setClues(String[] clues) {
+        this.clues = clues;
+    }
     public enum Item {
         money,
         fish,

@@ -35,6 +35,7 @@ public class GameControl {
         game.setInventoryItem(inventory);
         Map map = MapControl.createMap();
         game.setMap(map);
+        game.setClues(new String[5]);
         FishingChampion.setCurrentGame(game);
         return game;
     }
