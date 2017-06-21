@@ -45,23 +45,23 @@ public class ClueControl {
             int rowDist = fishRow - player.getRow();
             int columnDist = fishColumn - player.getColumn();
             String clue;
-            if (rowDist < -2 && columnDist < -2) {
+            if (rowDist < -1 && columnDist < -1) {
                 clue = "I heard there was a really big fish to the northwest.";
-            } else if (rowDist < -2 && columnDist >= -2 && columnDist <= 2) {
+            } else if (rowDist < -1 && columnDist >= -1 && columnDist <= 1) {
                 clue = "I heard there was a really big fish to the north.";
-            } else if (rowDist < -2 && columnDist > 2) {
+            } else if (rowDist < -1 && columnDist > 1) {
                 clue = "I heard there was a really big fish to the northeast.";
-            } else if (rowDist >= -2 && rowDist <= 2 && columnDist < -2) {
+            } else if (rowDist >= -1 && rowDist <= 1 && columnDist < -1) {
                 clue = "I heard there was a really big fish to the west.";
-            } else if (rowDist >= -2 && rowDist <= 2 && columnDist >= -2 && columnDist <= 2) {
+            } else if (rowDist >= -1 && rowDist <= 1 && columnDist >= -1 && columnDist <= 1) {
                 clue = "I've seen a really big fish in the waters near here.";
-            } else if (rowDist >= -2 && rowDist <= 2 && columnDist > 2) {
+            } else if (rowDist >= -1 && rowDist <= 1 && columnDist > 1) {
                 clue = "I've heard there's a really big fish to the east.";
-            } else if (rowDist > 2 && columnDist < -2) {
+            } else if (rowDist > 1 && columnDist < -1) {
                 clue = "I've heard there's a really big fish to the southwest.";
-            } else if (rowDist > 2 && columnDist >= -2 && columnDist <= 2) {
+            } else if (rowDist > 1 && columnDist >= -1 && columnDist <= 1) {
                 clue = "I've heard there's a really big fish to the south.";
-            } else if (rowDist > 2 && columnDist > 2) {
+            } else if (rowDist > 1 && columnDist > 1) {
                 clue = "I've heard there's a really big fish to the southeast.";
             } else {
                 clue = "I've heard there's a really big fish somewhere.";

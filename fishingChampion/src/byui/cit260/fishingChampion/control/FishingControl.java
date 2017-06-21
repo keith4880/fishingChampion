@@ -141,9 +141,8 @@ public class FishingControl {
         InventoryItem[] inventory = game.getInventoryItem();
         FishingControl.moveChampion();
         inventory[Game.Item.fish.ordinal()].setAmount(inventory[Game.Item.fish.ordinal()].getAmount() + fishWeight);
-        for (String clue : clues) {
-            clue = null;
-        }
+        String[] emptyClues = new String[clues.length];
+        game.setClues(emptyClues);
     }
 
     private static void moveChampion() {
