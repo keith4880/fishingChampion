@@ -31,7 +31,7 @@ public class ClueControl {
                 if (scene == null) {
                     
                 } else {
-                    if ("--".equals(scene.getDisplaySymbol())){
+                    if ("??".equals(scene.getDisplaySymbol())){
                         fishRow = i;
                         fishColumn = j;
                     }
@@ -77,5 +77,13 @@ public class ClueControl {
             return clue;
         }
     }
+
+    public static String[] getClues() {
+        Game game = FishingChampion.getCurrentGame();
+        String[] clues = game.getClues();
+        return clues;
+    }
+    
+    
     
 }

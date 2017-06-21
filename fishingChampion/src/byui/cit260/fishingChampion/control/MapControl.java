@@ -35,7 +35,7 @@ public class MapControl {
         Scene championFishScene = new Scene();
         championFishScene.setDescription(
             "There are no shops or people in sight.");
-        championFishScene.setDisplaySymbol("--");
+        championFishScene.setDisplaySymbol("??");
         scenes[Map.SceneType.championFish.ordinal()] = championFishScene;
         
         Scene shopScene = new Scene();

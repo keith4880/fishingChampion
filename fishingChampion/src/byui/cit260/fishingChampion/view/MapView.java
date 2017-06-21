@@ -38,20 +38,25 @@ public class MapView extends View {
                 if (player.getRow() == i && player.getColumn() == j) {
                     Scene scene = locations[i][j].getScene();
                         if (scene == null) {
-                            System.out.print("<-->");
+                            System.out.print("<??>");
                         } else {
-                        System.out.print("<" + scene.getDisplaySymbol() + ">");
+                        System.out.print("*" + scene.getDisplaySymbol() + "*");
                         }
                 } else {
                     if (locations[i][j].getVisited() == true) {
                         Scene scene = locations[i][j].getScene();
                         if (scene == null) {
-                            System.out.print(" -- ");
+                            System.out.print(" ?? ");
+                        } else {
+                        System.out.print(">" + scene.getDisplaySymbol() + "<");
+                        }
+                    } else {
+                        Scene scene = locations[i][j].getScene();
+                        if (scene == null) {
+                            System.out.print(" ?? ");
                         } else {
                         System.out.print(" " + scene.getDisplaySymbol() + " ");
                         }
-                    } else {
-                        System.out.print(" ?? ");
                     }
                 }
                 System.out.print("|");

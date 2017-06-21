@@ -5,6 +5,7 @@
  */
 package byui.cit260.fishingChampion.view;
 
+import byui.cit260.fishingChampion.control.ClueControl;
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Player;
@@ -57,7 +58,7 @@ public class GameMenuView extends View {
     
     private void clueView() {
         ClueView clueView = new ClueView();
-        clueView.display();
+        clueView.showClues();
     }
     private void castLine() {
         FishingView fishView = new FishingView();

@@ -38,7 +38,7 @@ public class FishingControl {
         Scene scene = locations[player.getRow()][player.getColumn()].getScene();
         int chance = (int) Math.round(Math.random() * 50 + 1);
         if (scene == null) {
-        } else if ("--".equals(scene.getDisplaySymbol())) {
+        } else if ("??".equals(scene.getDisplaySymbol())) {
             if (chance > 30) {
                 int fishWeight;
                 fishWeight = (int) Math.round(Math.random() * 100 +101);
