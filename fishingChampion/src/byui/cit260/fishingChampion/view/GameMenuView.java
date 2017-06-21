@@ -23,7 +23,6 @@ public class GameMenuView extends View {
             + "\nM - View Map"
             + "\nL - Look Around"
             + "\nB - Check Boat"
-            + "\nS - Enter Marina Shop"
             + "\nI - Interpret Clue"
             + "\nQ - Return to Main Menu"
             + "\n----------------------------------------"
@@ -46,9 +45,6 @@ public class GameMenuView extends View {
             case "B":
                 this.checkBoat();
                 break;
-            case "S":
-                this.enterShop();
-                break;
             case "I":
                 this.clueView();
                 break;
@@ -59,10 +55,6 @@ public class GameMenuView extends View {
         return false;
     }
     
-    private void enterShop() {
-        ShopView shopView = new ShopView();
-        shopView.display();
-    }
     private void clueView() {
         ClueView clueView = new ClueView();
         clueView.display();

@@ -30,7 +30,7 @@ public class InventoryControl {
         inventory[Game.Item.fish.ordinal()] = fish;
         
         InventoryItem fuel = new InventoryItem();
-        fuel.setAmount(10);
+        fuel.setAmount(30);
         fuel.setMaxAmount(1000000);
         inventory[Game.Item.fuel.ordinal()] = fuel;
         
