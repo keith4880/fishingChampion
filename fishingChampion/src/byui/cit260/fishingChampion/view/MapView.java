@@ -36,7 +36,12 @@ public class MapView extends View {
             for(int j = 0; j < locations[i].length; j++) {
                 System.out.print("|");
                 if (player.getRow() == i && player.getColumn() == j) {
-                    System.out.print(" PL ");
+                    Scene scene = locations[i][j].getScene();
+                        if (scene == null) {
+                            System.out.print("<-->");
+                        } else {
+                        System.out.print("<" + scene.getDisplaySymbol() + ">");
+                        }
                 } else {
                     if (locations[i][j].getVisited() == true) {
                         Scene scene = locations[i][j].getScene();
