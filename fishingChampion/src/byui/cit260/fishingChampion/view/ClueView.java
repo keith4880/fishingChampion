@@ -33,16 +33,19 @@ public class ClueView extends View{
 
     void showClues() {
         String[] clues = ClueControl.getClues();
+        boolean notNull = false;
         for (String clue : clues) {
             if (clue == null) {
-                System.out.println("\nClue not yet found.");
-            } else if (clue.length() < 1){
-                System.out.println("\nThe fish this clue pointed to has already been caught.");
             } else {
                 System.out.println(clue);
+                notNull = true;
             }
         }
-        this.display();
+        if (!notNull) {
+            System.out.println("You haven't found any clues.");
+        } else {
+                    this.display();
+        }
     }
 
     
