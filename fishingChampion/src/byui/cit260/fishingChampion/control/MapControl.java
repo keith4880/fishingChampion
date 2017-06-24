@@ -16,7 +16,9 @@ public class MapControl {
  
     public static Map createMap() {
         //create the map
-        Map map = new Map(8, 8);
+        int rows = (int) Math.round(Math.random() * 4 + 5);
+        int columns = (int) Math.round(Math.random() * 4 + 5);
+        Map map = new Map(rows, columns);
         Scene[] scenes = createScenes();
         GameControl.assignScenesToLocations(map, scenes);
         

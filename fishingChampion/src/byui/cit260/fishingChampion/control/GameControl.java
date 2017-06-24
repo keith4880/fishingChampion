@@ -56,8 +56,8 @@ public class GameControl {
         int row;
         int column;
         do {
-            row = (int) Math.round(Math.random() * 8 + 1);
-            column = (int) Math.round(Math.random() * 8 + 1);
+            row = (int) Math.round(Math.random() * locations.length + 1);
+            column = (int) Math.round(Math.random() * locations[0].length + 1);
             if (row > 0 && row < locations.length && column > 0 && column < locations[0].length && locations[row][column].getScene() == null) {
                 done = true;
             }
