@@ -39,7 +39,13 @@ public class FishingChampion {
      */
     public static void main(String[] args) {
        StartProgramView startProgramView = new StartProgramView();
-       startProgramView.display();
+       try {
+           startProgramView.display();
+       } catch (Throwable te) {
+           System.out.println(te.getMessage());
+           te.printStackTrace();
+           startProgramView.display();
+       }
     }
     
 }

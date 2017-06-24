@@ -16,6 +16,7 @@ import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
+import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
 
 /**
@@ -24,11 +25,15 @@ import fishingchampion.FishingChampion;
  */
 public class LocationControl {
 
-    public static boolean checkValid(int row, int column) {
+    public static void checkValid(int row, int column) throws MapControlException {
         Game game = FishingChampion.getCurrentGame();
         Map map = game.getMap();
         Location[][] locations = map.getLocations();
-        return !(row > locations.length || column > locations[1].length || row < 0 || column < 0);
+        int rowCount = locations.length;
+        int columnCount = locations[0].length;
+        if (row + 1 > rowCount || column + 1 > columnCount || row < 0 || column < 0) {
+            throw new MapControlException("That location is outside the bounds of the map.");
+        }
     }
     public static double determineDistance(int newRow, int newColumn) {
         Game game = FishingChampion.getCurrentGame();

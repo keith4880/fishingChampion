@@ -10,6 +10,7 @@ import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.Scene;
+import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
 import java.util.Scanner;
 
@@ -89,10 +90,14 @@ public class MapView extends View {
             System.out.println("Please enter a valid selection.");
             return false;
         }
-        boolean valid = LocationControl.checkValid(row, column);
-        if (!valid) {
-            System.out.println("Please enter a valid selection.");
-        } else {
+        boolean valid = true;
+        try {
+            LocationControl.checkValid(row, column);
+        } catch (MapControlException me) {
+            System.out.println(me.getMessage());
+            valid = false;
+        }
+        if (valid) {
             double distance = LocationControl.determineDistance(row, column);
             int fuel = LocationControl.calcFuelNeeded(distance);
             if (fuel == -1) {
