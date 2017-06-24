@@ -7,14 +7,15 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
+import java.util.ArrayList;
 
 /**
  *
  * @author kyt09
  */
-public class InventoryControl {
+public class InventoryControl implements serializable {
     
-    
+    private final ArrayList<InventoryItem> items;
     
     public static InventoryItem[] createInventoryList() {
         InventoryItem[] inventory = new InventoryItem[6];
@@ -51,4 +52,44 @@ public class InventoryControl {
         
         return inventory;
     }
+    
+    
+           
+    InventoryControl(){
+        items = new ArrayList<>();
+        
+    }
+    public void addItem(InventoryItem item){
+        
+        items.add(item);  
+    }
+    public void removeItem(String name) {
+       
+        for(InventoryItem item : items){
+           
+          
+        }
+   }
+    //gives you the total no of items in the backpack follow the code on mapcontrol on line 401
+    public int TotalNoOfItem(){
+        int count = 0;
+        
+        for(InventoryItem item : items){
+            count++;
+        }
+        return count;
+    }
+    
+    public InventoryItem getItem(int index){
+        int count = 0;
+        
+        for(InventoryItem item : items){
+            if(count == index)
+                return item;            
+            count++;
+            
+        }
+        return null; 
+    }
+   
 }

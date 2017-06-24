@@ -30,4 +30,8 @@ public class InventoryItem implements Serializable {
     public void setMaxAmount(int maxAmount) {
         this.maxAmount = maxAmount;
     }
+
+    public Object getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
