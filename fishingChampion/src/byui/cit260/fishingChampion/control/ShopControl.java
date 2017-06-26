@@ -7,7 +7,7 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
-import byui.cit260.fishingChampion.model.Purchase;
+import exceptions.PurchaseControlException;
 import fishingchampion.FishingChampion;
 
 /**
@@ -24,64 +24,61 @@ public class ShopControl {
         return inventory;
     }
 
-    public static int buySell(int item) {
+    public static void buySell(int item, int amount) throws PurchaseControlException {
         Game game = FishingChampion.getCurrentGame();
         inventory = game.getInventoryItem();
-        Purchase[] purchase = ShopControl.createPurchase();
-        int cost = purchase[item].getPrice();
+        int[] purchase = ShopControl.createPurchase();
+        int cost = purchase[item] * amount;
         int money = inventory[Game.Item.money.ordinal()].getAmount();
         if (money < cost) {
-            return 0;
-        } else if (item == Game.Item.fish.ordinal() && inventory[item].getAmount() < 1) {
-            return 0;
-        } else if (ShopControl.checkMax(item) == false) {
-            return -1;
+            throw new PurchaseControlException("Not enough money.");
+        } else if (item == Game.Item.fish.ordinal() && inventory[item].getAmount() < amount) {
+            throw new PurchaseControlException("Not enough fish.");
         } else {
-            inventory[item].setAmount(inventory[item].getAmount() + purchase[item].getAmount());
+            ShopControl.checkMax(item, amount);
+            if (item == Game.Item.fish.ordinal()) {
+                inventory[item].setAmount(inventory[item].getAmount() - amount);
+            } else {
+                inventory[item].setAmount(inventory[item].getAmount() + amount);
+            }
             inventory[Game.Item.money.ordinal()].setAmount(money - cost);
-            return 1;
         }
     }
 
-    private static Purchase[] createPurchase() {
-        Purchase[] purchase = new Purchase[6];
+    private static int[] createPurchase() {
+        int[] purchase = new int[6];
         
-        Purchase fish = new Purchase();
-        fish.setPrice(-20);
-        fish.setAmount(-10);
+        int fish = -2;
         purchase[Game.Item.fish.ordinal()] = fish;
         
-        Purchase fuel = new Purchase();
-        fuel.setPrice(10);
-        fuel.setAmount(10);
+        int fuel = 1;
         purchase[Game.Item.fuel.ordinal()] = fuel;
         
-        Purchase bait = new Purchase();
-        bait.setPrice(10);
-        bait.setAmount(1);
+        int bait = 10;
         purchase[Game.Item.bait.ordinal()] = bait;
         
-        Purchase maxWeight = new Purchase();
-        maxWeight.setPrice(100);
-        maxWeight.setAmount(50);
+        int maxWeight = 2;
         purchase[Game.Item.maxWeight.ordinal()] = maxWeight;
         
-        Purchase fuelEfficiency = new Purchase();
-        fuelEfficiency.setPrice(100);
-        fuelEfficiency.setAmount(1);
+        int fuelEfficiency = 100;
         purchase[Game.Item.fuelEfficiency.ordinal()] = fuelEfficiency;
         
         return purchase;
     }
 
-    private static boolean checkMax(int item) {
+    private static void checkMax(int item, int amount) throws PurchaseControlException {
         Game game = FishingChampion.getCurrentGame();
         inventory = game.getInventoryItem();
-        if (item == Game.Item.fuel.ordinal()) {
-            return inventory[Game.Item.fish.ordinal()].getAmount() + inventory[Game.Item.fuel.ordinal()].getAmount() + 10 <= inventory[Game.Item.maxWeight.ordinal()].getAmount();
-        } else {
-            return inventory[item].getAmount() + 1 <= inventory[item].getMaxAmout();
-        } 
+        if (item == Game.Item.fuel.ordinal() && (inventory[Game.Item.fuel.ordinal()].getAmount() + inventory[Game.Item.fish.ordinal()].getAmount() + amount) > inventory[Game.Item.maxWeight.ordinal()].getAmount()) {
+            throw new PurchaseControlException("Your boat can't carry that much weight.");
+        } else if (inventory[item].getAmount() > inventory[item].getMaxAmout()) {
+            if (item == Game.Item.fuelEfficiency.ordinal()) {
+                throw new PurchaseControlException("Fuel efficiency technology has unfortunately reached its limit.");
+            } else if (item == Game.Item.maxWeight.ordinal()) {
+                throw new PurchaseControlException("Your boat would be too big to fit in the lake.");
+            }
+        }
+            
     }
 
     

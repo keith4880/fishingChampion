@@ -13,11 +13,11 @@ public class ShopView extends View {
             super("\n----------------------------------------"
                 + "\n Marina Shop                           |"
                 + "\n----------------------------------------"
-                + "\nB - Buy 1 Bait                        10"
-                + "\nF - Buy 10 Fuel                       10"
-                + "\nE - Upgrade Boat's Fuel Efficiency   100"
-                + "\nM - Upgrade Boat's Maximum Weight    100"
-                + "\nS - Sell 10 Pounds of Fish            20"
+                + "\nB - Buy Bait                $10 per Bait"
+                + "\nF - Buy Fuel                $1 per Pound"
+                + "\nE - Upgrade Fuel Efficiency         $100"
+                + "\nM - Upgrade Max Weight      $2 per Pound"
+                + "\nS - Sell Fish               $2 per Pound"
                 + "\nQ - Exit Shop                       Free"
                 + "\n----------------------------------------");
     }
@@ -25,106 +25,33 @@ public class ShopView extends View {
     @Override
     public boolean doAction(String choice) {
         choice = choice.toUpperCase();
+        int type;
         switch (choice) {
             case "B":
-                this.buyBait();
+                type = Game.Item.bait.ordinal();
                 break;
             case "F":
-                this.buyFuel();
+                type = Game.Item.fuel.ordinal();
                 break;
             case "E":
-                this.upgradeFuelEfficiency();
+                type = Game.Item.fuelEfficiency.ordinal();
                 break;
             case "M":
-                this.upgradeMaxWeight();
+                type = Game.Item.maxWeight.ordinal();
                 break;
             case "S":
-                this.sellFish();
+                type = Game.Item.fish.ordinal();
                 break;
             default:
                 System.out.println("\n*** Please enter a valid selection.");
+                type = -1;
                 break;
+        }
+        if (type > 0) {
+            PurchaseView purchaseView = new PurchaseView(type);
+            purchaseView.showAmount(type);
+            purchaseView.display();
         }
         return false;
-    }
-
-    private void buyBait() {
-        int buy;
-        buy = ShopControl.buySell(Game.Item.bait.ordinal());
-        switch (buy) {
-            case 0:
-                System.out.println("Not enough money.");
-                break;
-            case -1:
-                System.out.println("You can't carry any more bait.");
-                break;
-            case 1:
-                System.out.println("Bait purchased.");
-                break;
-        }
-    }
-
-    private void buyFuel() {
-        int buy;
-        buy = ShopControl.buySell(Game.Item.fuel.ordinal());
-        switch (buy) {
-            case 0:
-                System.out.println("Not enough money.");
-                break;
-            case -1:
-                System.out.println("Your boat can't carry that much weight.");
-                break;
-            case 1:
-                System.out.println("Fuel purchased.");
-                break;
-        }
-    }
-
-    private void upgradeFuelEfficiency() {
-        int buy;
-        buy = ShopControl.buySell(Game.Item.fuelEfficiency.ordinal());
-        switch (buy) {
-            case 0:
-                System.out.println("Not enough money.");
-                break;
-            case -1:
-                System.out.println("Fuel efficiency technology has unfortunately reached its limit.");
-                break;
-            case 1:
-                System.out.println("Boat upgraded.");
-                break;
-        }
-    }
-    
-    private void upgradeMaxWeight() {
-        int buy;
-        buy = ShopControl.buySell(Game.Item.maxWeight.ordinal());
-        switch (buy) {
-            case 0:
-                System.out.println("Not enough money.");
-                break;
-            case -1:
-                System.out.println("Your boat would be too large to fit in the lake.");
-                break;
-            case 1:
-                System.out.println("Boat upgraded.");
-                break;
-        }
-    }
-
-    private void sellFish() {
-        int buy;
-        buy = ShopControl.buySell(Game.Item.fish.ordinal());
-        switch (buy) {
-            case 0:
-                System.out.println("You don't have any fish to sell.");
-                break;
-            case -1:
-                System.out.println("You have too many fish.  You've broken the game.");
-                break;
-            case 1:
-                System.out.println("Fish sold.");
-                break;
-        }
     }
 }
