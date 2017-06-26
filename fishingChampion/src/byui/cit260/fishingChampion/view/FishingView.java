@@ -97,8 +97,10 @@ public class FishingView extends View {
 
 
     private boolean getPrompt(int fishWeight) {
-        if (fishWeight > 99) {
+        if (fishWeight > 100) {
             System.out.println("\nYou barely feel a tug on the line.");
+        } else if (fishWeight > 50) {
+            System.out.println("\nYour boat nearly flips over from the force of the tug.");
         } else if (fishWeight > 40) {
             System.out.println("\nYou feel a tug on the line that nearly knocks you over.");
         } else if (fishWeight > 30) {

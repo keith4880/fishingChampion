@@ -14,10 +14,29 @@ import java.util.Objects;
  */
 public class Scene implements Serializable{
     // class instance variables
+    private String type;
     private String description;
     private String travelTime;
     private String displaySymbol;
     private String clue;
+    private int fishMax;
+
+    public int getFishMax() {
+        return fishMax;
+    }
+
+    public void setFishMax(int fishMax) {
+        this.fishMax = fishMax;
+    }
+    
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
 
     public String getDescription() {
         return description;

@@ -31,7 +31,12 @@ public class Map implements Serializable {
         man2,
         man3,
         man4,
-        man5;
+        man5,
+        fish1,
+        fish2,
+        fish3,
+        fish4,
+        fish5;
     }
 
     public Map(int noOfRows, int noOfColumns) {

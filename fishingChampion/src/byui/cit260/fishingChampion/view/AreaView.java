@@ -29,7 +29,7 @@ public class AreaView extends View {
         Location[][] locations = map.getLocations();
         Player player = game.getPlayer();
         Scene scene = locations[player.getRow()][player.getColumn()].getScene();
-        if (scene == null || "--".equals(scene.getDisplaySymbol())) {
+        if (scene == null || "--".equals(scene.getDisplaySymbol()) || "??".equals(scene.getDisplaySymbol())) {
             System.out.println("\nThere are no shops or people in sight.");
         } else if ("SH".equals(scene.getDisplaySymbol())) {
             System.out.println(scene.getDescription());

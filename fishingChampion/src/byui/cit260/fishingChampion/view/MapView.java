@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class MapView extends View {
     
     public MapView() {
-        super ("\nEnter the row and column you would like to travel to."
+        super ("\nEnter the row/column you would like to travel to."
              + "\nQ to quit");
     }
 
