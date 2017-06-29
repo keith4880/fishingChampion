@@ -17,6 +17,7 @@ import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import exceptions.MapControlException;
+import exceptions.LocationControlException;
 import fishingchampion.FishingChampion;
 
 /**
@@ -44,14 +45,14 @@ public class LocationControl {
         return distance;
     }
     
-    public static int calcFuelNeeded(double distance) {
+    public static int calcFuelNeeded(double distance) throws LocationControlException {
         Game game = FishingChampion.getCurrentGame();
         InventoryItem[] inventory = game.getInventoryItem();
         int fuelEfficiency = inventory[Game.Item.fuelEfficiency.ordinal()].getAmount();
         int fuelNeeded = (int) distance / fuelEfficiency;
         int fuelContained = inventory[Game.Item.fuel.ordinal()].getAmount();
         if (fuelNeeded > fuelContained) {
-            return -1;
+            throw new LocationControlException("The boat does not have enough fuel to reach this location.");
         }
         
         return fuelNeeded;
