@@ -5,7 +5,6 @@
  */
 package byui.cit260.fishingChampion.view;
 
-import byui.cit260.fishingChampion.control.ClueControl;
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Player;

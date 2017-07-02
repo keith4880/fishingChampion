@@ -14,7 +14,10 @@ import byui.cit260.fishingChampion.model.Scene;
 import exceptions.LocationControlException;
 import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  *
@@ -124,9 +127,12 @@ public class MapView extends View {
     }
 
     private String Confirm() {
-        Scanner keyboard = new Scanner(System.in);
         String value = "";
-        value = keyboard.nextLine();
+        try {
+            value = this.keyboard.readLine();
+        } catch (IOException ex) {
+            System.out.println("Error reading input.");
+        }
         value = value.trim();
         return value;
     }

@@ -5,12 +5,21 @@
  */
 package byui.cit260.fishingChampion.view;
 
+import fishingchampion.FishingChampion;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public abstract class View implements ViewInterface {
 
     protected String displayMessage;
+    
+    protected final BufferedReader keyboard = FishingChampion.getInFile();
+    protected final PrintWriter console = FishingChampion.getOutFile();
     
     public View() {
     }
@@ -32,12 +41,15 @@ public abstract class View implements ViewInterface {
 
     @Override
     public String getInput() {
-        Scanner keyboard = new Scanner(System.in);
         String value = "";
         boolean valid = false;
         while (!valid) {
             System.out.println("\n" + this.displayMessage);
-            value = keyboard.nextLine();
+            try {
+                value = this.keyboard.readLine();
+            } catch (IOException ex) {
+                System.out.println("Error reading input.");
+            }
             value = value.trim();
             if (value.length() < 1) {
                 System.out.println("\nYou must enter a selection.");
