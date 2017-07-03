@@ -1,6 +1,5 @@
 package byui.cit260.fishingChampion.view;
 
-import byui.cit260.fishingChampion.control.ShopControl;
 import byui.cit260.fishingChampion.model.Game;
 
 /**
@@ -43,7 +42,8 @@ public class ShopView extends View {
                 type = Game.Item.fish.ordinal();
                 break;
             default:
-                System.out.println("\n*** Please enter a valid selection.");
+                ErrorView.display(this.getClass().getName(),
+                        "Please enter a valid selection.");
                 type = -1;
                 break;
         }

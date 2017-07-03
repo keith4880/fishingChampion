@@ -30,17 +30,17 @@ public class AreaView extends View {
         Player player = game.getPlayer();
         Scene scene = locations[player.getRow()][player.getColumn()].getScene();
         if (scene == null || "--".equals(scene.getDisplaySymbol()) || "??".equals(scene.getDisplaySymbol())) {
-            System.out.println("\nThere are no shops or people in sight.");
+            this.console.println("\nThere are no shops or people in sight.");
         } else if ("SH".equals(scene.getDisplaySymbol())) {
-            System.out.println(scene.getDescription());
-            System.out.println("\nS to enter shop, Q to quit");
+            this.console.println(scene.getDescription());
+            this.console.println("\nS to enter shop, Q to quit");
             this.doShop();
         } else if ("FI".equals(scene.getDisplaySymbol())) {
-            System.out.println(scene.getDescription());
-            System.out.println("\nT to talk, Q to quit");
+            this.console.println(scene.getDescription());
+            this.console.println("\nT to talk, Q to quit");
             this.doTalk();
         } else if ("ST".equals(scene.getDisplaySymbol())) {
-            System.out.println(scene.getDescription());
+            this.console.println(scene.getDescription());
         }
     }
     
@@ -59,7 +59,7 @@ public class AreaView extends View {
                     done = true;
                     break;
                 default:
-                    System.out.println("\nPlease enter a valid selection.");
+                    this.console.println("\nPlease enter a valid selection.");
                     break;
             }
         } while (!done);
@@ -73,14 +73,14 @@ public class AreaView extends View {
             switch (input.toUpperCase()) {
                 case "T":
                     String clue = ClueControl.getClue();
-                    System.out.println(clue);
+                    this.console.println(clue);
                     done = true;
                     break;
                 case "Q":
                     done = true;
                     break;
                 default:
-                    System.out.println("\nPlease enter a valid selection.");
+                    this.console.println("\nPlease enter a valid selection.");
                     break;
             }
         } while (!done);

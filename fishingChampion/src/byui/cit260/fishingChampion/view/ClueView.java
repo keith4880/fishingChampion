@@ -6,8 +6,6 @@
 package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.ClueControl;
-import byui.cit260.fishingChampion.model.Game;
-import fishingchampion.FishingChampion;
 
 /**
  *
@@ -37,12 +35,12 @@ public class ClueView extends View{
         for (String clue : clues) {
             if (clue == null) {
             } else {
-                System.out.println(clue);
+                this.console.println(clue);
                 notNull = true;
             }
         }
         if (!notNull) {
-            System.out.println("You haven't found any clues.");
+            this.console.println("You haven't found any clues.");
         } else {
                     this.display();
         }

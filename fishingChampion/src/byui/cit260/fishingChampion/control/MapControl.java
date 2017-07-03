@@ -7,6 +7,7 @@ package byui.cit260.fishingChampion.control;
 
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Scene;
+import exceptions.MapControlException;
 
 /*
  *
@@ -14,15 +15,18 @@ import byui.cit260.fishingChampion.model.Scene;
  */
 public class MapControl {
  
-    public static Map createMap() {
+    public static Map createMap() throws MapControlException {
         //create the map
         int rows = (int) Math.round(Math.random() * 4 + 5);
         int columns = (int) Math.round(Math.random() * 4 + 5);
-        Map map = new Map(rows, columns);
-        Scene[] scenes = createScenes();
-        GameControl.assignScenesToLocations(map, scenes);
-        
-        return map;
+        if (rows < 5 || columns < 5) {
+            throw new MapControlException("Map cannot be less than 5 by 5.");
+        } else {
+            Map map = new Map(rows, columns);
+            Scene[] scenes = createScenes();
+            GameControl.assignScenesToLocations(map, scenes);
+            return map;
+        }
     }
 
     private static Scene[] createScenes() {

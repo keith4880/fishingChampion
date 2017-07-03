@@ -49,7 +49,8 @@ public class GameMenuView extends View {
                 this.clueView();
                 break;
             default:
-                System.out.println("\n*** Please enter a valid selection.");
+                ErrorView.display(this.getClass().getName(),
+                                  "Please enter a valid selection.");
                 break;
         }
         return false;
@@ -65,7 +66,6 @@ public class GameMenuView extends View {
     }
     private void viewMap() {
         MapView mapView = new MapView();
-        mapView.viewMap();
         mapView.display();
     }
     private void lookAround() {
@@ -76,12 +76,12 @@ public class GameMenuView extends View {
         Game game = FishingChampion.getCurrentGame();
         Player player = game.getPlayer();
         InventoryItem[] inventory = game.getInventoryItem();
-        System.out.println(player.getName());
-        System.out.println("Money = " + inventory[Game.Item.money.ordinal()].getAmount());
-        System.out.println("Fuel = " + inventory[Game.Item.fuel.ordinal()].getAmount());
-        System.out.println("Fish = " + inventory[Game.Item.fish.ordinal()].getAmount());
-        System.out.println("Bait = " + inventory[Game.Item.bait.ordinal()].getAmount() + "/" + inventory[Game.Item.bait.ordinal()].getMaxAmout());
-        System.out.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getAmount());
-        System.out.println("Maximum Weight = " + inventory[Game.Item.maxWeight.ordinal()].getAmount());
+        this.console.println(player.getName());
+        this.console.println("Money = " + inventory[Game.Item.money.ordinal()].getAmount());
+        this.console.println("Fuel = " + inventory[Game.Item.fuel.ordinal()].getAmount());
+        this.console.println("Fish = " + inventory[Game.Item.fish.ordinal()].getAmount());
+        this.console.println("Bait = " + inventory[Game.Item.bait.ordinal()].getAmount() + "/" + inventory[Game.Item.bait.ordinal()].getMaxAmout());
+        this.console.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getAmount());
+        this.console.println("Maximum Weight = " + inventory[Game.Item.maxWeight.ordinal()].getAmount());
     }
 }

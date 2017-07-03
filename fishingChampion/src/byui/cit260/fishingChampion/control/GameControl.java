@@ -11,7 +11,10 @@ import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.Scene;
+import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +36,12 @@ public class GameControl {
         game.setPlayer(player);
         InventoryItem[] inventory = InventoryControl.createInventoryList();
         game.setInventoryItem(inventory);
-        Map map = MapControl.createMap();
+        Map map = null;
+        try {
+            map = MapControl.createMap();
+        } catch (MapControlException ex) {
+            Logger.getLogger(GameControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         game.setMap(map);
         game.setClues(new String[5]);
         FishingChampion.setCurrentGame(game);

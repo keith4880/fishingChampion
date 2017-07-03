@@ -40,10 +40,6 @@ public class Map implements Serializable {
     }
 
     public Map(int noOfRows, int noOfColumns) {
-        if (noOfRows < 1 || noOfColumns < 1) {
-            System.out.println("The number of rows and columns must be more than zero.");
-            return;
-        }
         rowCount = noOfRows;
         columnCount = noOfColumns;
         this.locations = new Location[noOfRows][noOfColumns];

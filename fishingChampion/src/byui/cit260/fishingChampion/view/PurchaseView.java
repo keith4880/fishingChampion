@@ -28,8 +28,8 @@ public class PurchaseView extends View {
         Game game = FishingChampion.getCurrentGame();
         InventoryItem[] inventory = game.getInventoryItem();
         this.item = Game.Item.values()[type].name();
-        System.out.println(item + " = " + inventory[Game.Item.valueOf(item).ordinal()].getAmount());
-        System.out.println("\nMoney = " + inventory[Game.Item.money.ordinal()].getAmount());
+        this.console.println(item + " = " + inventory[Game.Item.valueOf(item).ordinal()].getAmount());
+        this.console.println("\nMoney = " + inventory[Game.Item.money.ordinal()].getAmount());
     }
 
     @Override
@@ -39,14 +39,16 @@ public class PurchaseView extends View {
             amount = Integer.parseInt(choice);
         }
         catch(NumberFormatException nFE) {
-            System.out.println("Please enter a valid number.");
+            ErrorView.display(this.getClass().getName(),
+                    "Please enter a valid selection." + nFE.getMessage());
             return false;
         }
         try {
             ShopControl.buySell(Game.Item.valueOf(item).ordinal(), amount);
         }
         catch(PurchaseControlException pCE) {
-            System.out.println(pCE.getMessage());
+            ErrorView.display(this.getClass().getName(),
+                    pCE.getMessage());
             return false;
         }
         return true;

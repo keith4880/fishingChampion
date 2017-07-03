@@ -24,7 +24,7 @@ public class BoatSinkView extends View {
                     + "\nQ - Quit"
                     + "\n----------------------------------------"
                     + "\nPlease select an option before it's too late.";
-        System.out.println(Menu);
+        this.console.println(Menu);
         this.display();
         return done;
     }
@@ -44,24 +44,24 @@ public class BoatSinkView extends View {
                 break;
             default:
                 this.sinkBoat();
-                System.out.println("\nYou were too slow. Your boat sank.");
+                this.console.println("\nYou were too slow. Your boat sank.");
         }
         return true;
     }
 
     private void dumpFish() {
         FishingControl.dumpFish();
-        System.out.println("\nFish dumped.");
+        this.console.println("\nFish dumped.");
         this.done = true;
     }
 
     private void dumpFuel() {
         boolean fuel = FishingControl.dumpFuel();
         if (fuel == true) {
-            System.out.println("\nFuel dumped.");
+            this.console.println("\nFuel dumped.");
             this.done = true;
         } else {
-            System.out.println("\nThe fish are still too heavy. Your boat sank.");
+            this.console.println("\nThe fish are still too heavy. Your boat sank.");
             this.sinkBoat();
             this.done = true;
         }
@@ -71,11 +71,11 @@ public class BoatSinkView extends View {
         int chance = (int) Math.round(Math.random() * 50 + 1);
         if (chance > 30) {
             FishingControl.trimFish();
-            System.out.println("\nYou made it to shore and dumped your extra fish.");
+            this.console.println("\nYou made it to shore and dumped your extra fish.");
             this.done = true;
         } else {
             this.sinkBoat();
-            System.out.println("\nThe boat sank before you could make it to shore.");
+            this.console.println("\nThe boat sank before you could make it to shore.");
             this.done = true;
         }
     }

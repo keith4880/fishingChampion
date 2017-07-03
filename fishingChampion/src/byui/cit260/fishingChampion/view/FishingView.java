@@ -22,15 +22,15 @@ public class FishingView extends View {
     public void castLine() {
         boolean checkBait = FishingControl.checkBait();
         if (checkBait == false) {
-            System.out.println("You're out of bait.");
+            this.console.println("You're out of bait.");
         } else {
-            System.out.println("You cast a line into the water.");
+            this.console.println("You cast a line into the water.");
             this.fishWeight = FishingControl.generateFish();
             boolean fish = this.getPrompt(fishWeight);
             if (fish == false) {
                 return;
             } else {
-                System.out.println("\nEnter a number to indicate how hard you pull.");
+                this.console.println("\nEnter a number to indicate how hard you pull.");
                 this.display();
             }
         }
@@ -43,17 +43,18 @@ public class FishingView extends View {
             pullStrength = Integer.parseInt(input);
         }
         catch(NumberFormatException nFE) {
-            System.out.println("Please enter a valid selection.");
+            ErrorView.display(this.getClass().getName(),
+                              "Please enter a valid selection.");
             return false;
         }
         if (fishWeight > 99) {
             if (pullStrength < 100) {
-                System.out.println("The fish escapes.");
+                this.console.println("The fish escapes.");
                 return true;
             } else {
                 FishingControl.catchChampion(fishWeight);
                 FishingControl.subtractBait();
-                System.out.println("You caught a " + fishWeight + "-pound fish!");
+                this.console.println("You caught a " + fishWeight + "-pound fish!");
                 boolean boatSink = FishingControl.calcBoatSink();
                     if (boatSink == true) {
                         FishingControl.sinkBoat();
@@ -64,25 +65,25 @@ public class FishingView extends View {
             int isCaught = FishingControl.determineCatch(fishWeight, pullStrength);
             switch (isCaught) {
                 case -1:
-                    System.out.println("\nYou toss your fishing line into the water."
+                    this.console.println("\nYou toss your fishing line into the water."
                                      + "\nWhy did you do that?");
                     FishingControl.subtractBait();
                     break;
                 case 0:
-                    System.out.println("\nYou stand and stare at the water as the fish escapes.");
+                    this.console.println("\nYou stand and stare at the water as the fish escapes.");
                     FishingControl.subtractBait();
                     break;
                 case 101:
-                    System.out.println("\nYou pull so hard, you fall into the water."
+                    this.console.println("\nYou pull so hard, you fall into the water."
                                      + "\nThe fish escapes as you climb back on.");
                     FishingControl.subtractBait();
                     break;
                 case 2:
-                    System.out.println("\nThe fish escapes.");
+                    this.console.println("\nThe fish escapes.");
                     FishingControl.subtractBait();
                     break;
                 case 1:
-                    System.out.println("\nYou catch a " + fishWeight + "-pound fish.");
+                    this.console.println("\nYou catch a " + fishWeight + "-pound fish.");
                     FishingControl.addFish(fishWeight);
                     FishingControl.subtractBait();
                     boolean boatSink = FishingControl.calcBoatSink();
@@ -98,21 +99,21 @@ public class FishingView extends View {
 
     private boolean getPrompt(int fishWeight) {
         if (fishWeight > 100) {
-            System.out.println("\nYou barely feel a tug on the line.");
+            this.console.println("\nYou barely feel a tug on the line.");
         } else if (fishWeight > 50) {
-            System.out.println("\nYour boat nearly flips over from the force of the tug.");
+            this.console.println("\nYour boat nearly flips over from the force of the tug.");
         } else if (fishWeight > 40) {
-            System.out.println("\nYou feel a tug on the line that nearly knocks you over.");
+            this.console.println("\nYou feel a tug on the line that nearly knocks you over.");
         } else if (fishWeight > 30) {
-            System.out.println("\nYou feel a strong tug on the line.");
+            this.console.println("\nYou feel a strong tug on the line.");
         } else if (fishWeight > 20) {
-            System.out.println("\nYou feel a tug on the line.");
+            this.console.println("\nYou feel a tug on the line.");
         } else if (fishWeight > 10) {
-            System.out.println("\nYou feel a weak tug on the line.");
+            this.console.println("\nYou feel a weak tug on the line.");
         } else if (fishWeight > 0) {
-            System.out.println("\nYou barely feel a tug on the line.");
+            this.console.println("\nYou barely feel a tug on the line.");
         } else {
-            System.out.println("\nNothing happens.");
+            this.console.println("\nNothing happens.");
             return false;
         }
         return true;

@@ -9,9 +9,6 @@ import fishingchampion.FishingChampion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public abstract class View implements ViewInterface {
@@ -44,15 +41,17 @@ public abstract class View implements ViewInterface {
         String value = "";
         boolean valid = false;
         while (!valid) {
-            System.out.println("\n" + this.displayMessage);
+            this.console.println("\n" + this.displayMessage);
             try {
                 value = this.keyboard.readLine();
             } catch (IOException ex) {
-                System.out.println("Error reading input.");
+                ErrorView.display(this.getClass().getName(),
+                        "Error reading input: " + ex.getMessage());
             }
             value = value.trim();
             if (value.length() < 1) {
-                System.out.println("\nYou must enter a selection.");
+                ErrorView.display(this.getClass().getName(),
+                        "You must enter a selection.");
                 continue;
             }
             break;

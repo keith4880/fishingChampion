@@ -45,7 +45,8 @@ public class MainMenuView extends View {
                 this.displayHelpMenu();
                 break;
             default:
-                System.out.println("\n*** Please enter a valid selection.");
+                ErrorView.display(this.getClass().getName(),
+                        "Please enter a valid selection.");
                 break;
         }
         return false;
@@ -59,11 +60,11 @@ public class MainMenuView extends View {
     }
 
     private void loadGame() {
-        System.out.println("*** loadGame function called ***");
+        this.console.println("*** loadGame function called ***");
     }
 
     private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+        this.console.println("*** saveGame function called ***");
     }
 
     private void displayHelpMenu() {

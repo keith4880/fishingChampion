@@ -14,10 +14,6 @@ import byui.cit260.fishingChampion.model.Scene;
 import exceptions.LocationControlException;
 import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  *
@@ -28,6 +24,7 @@ public class MapView extends View {
     public MapView() {
         super("\nEnter the row/column you would like to travel to."
                 + "\nQ to quit");
+        this.viewMap();
     }
 
     public void viewMap() {
@@ -41,63 +38,65 @@ public class MapView extends View {
             dashes = dashes.concat("------");
             numbers = numbers.concat((i + 1) + "     ");
         }
-        System.out.println("\n" + numbers);
+        this.console.println("\n" + numbers);
         for (int i = 0; i < locations.length; i++) {
-            System.out.println("\n" + dashes);
-            System.out.print(i + 1);
+            this.console.println("\n" + dashes);
+            this.console.print(i + 1);
             for (int j = 0; j < locations[i].length; j++) {
-                System.out.print("|");
+                this.console.print("|");
                 if (player.getRow() == i && player.getColumn() == j) {
                     Scene scene = locations[i][j].getScene();
                     if (scene == null) {
-                        System.out.print("*??*");
+                        this.console.print("*??*");
                     } else {
-                        System.out.print("*" + scene.getDisplaySymbol() + "*");
+                        this.console.print("*" + scene.getDisplaySymbol() + "*");
                     }
                 } else {
                     if (locations[i][j].getVisited() == true) {
                         Scene scene = locations[i][j].getScene();
                         if (scene == null) {
-                            System.out.print(" ?? ");
+                            this.console.print(" ?? ");
                         } else {
-                            System.out.print(">" + scene.getDisplaySymbol() + "<");
+                            this.console.print(">" + scene.getDisplaySymbol() + "<");
                         }
                     } else {
                         Scene scene = locations[i][j].getScene();
                         if (scene == null) {
-                            System.out.print(" ?? ");
+                            this.console.print(" ?? ");
                         } else {
-                            System.out.print(" " + scene.getDisplaySymbol() + " ");
+                            this.console.print(" " + scene.getDisplaySymbol() + " ");
                         }
                     }
                 }
-                System.out.print("|");
+                this.console.print("|");
             }
         }
-        System.out.println("\n" + dashes);
+        this.console.println("\n" + dashes);
     }
 
     @Override
     public boolean doAction(String value) {
-        int row;
-        int column;
+        int row = -1;
+        int column = -1;
         try {
             row = Integer.parseInt(value.substring(0, 1)) - 1;
         } catch (NumberFormatException nFE) {
-            System.out.println("Please enter a valid selection.");
-            return false;
+            ErrorView.display(this.getClass().getName(),
+                    "Please enter a valid selection." + nFE.getMessage());
         }
         try {
             column = Integer.parseInt(value.substring(value.length() - 1, value.length())) - 1;
         } catch (NumberFormatException nFE) {
-            System.out.println("Please enter a valid selection.");
+            ErrorView.display(this.getClass().getName(),
+                    "Please enter a valid selection." + nFE.getMessage());
             return false;
         }
         boolean valid = true;
         try {
             LocationControl.checkValid(row, column);
         } catch (MapControlException me) {
-            System.out.println(me.getMessage());
+            ErrorView.display(this.getClass().getName(),
+                    me.getMessage());
             valid = false;
         }
         if (valid) {
@@ -105,35 +104,13 @@ public class MapView extends View {
 
             try {
                 int fuel = LocationControl.calcFuelNeeded(distance);
-                System.out.println("\nMoving to " + (row + 1) + "/" + (column + 1) + " will require " + fuel + " fuel."
-                        + "\nY to proceed, Q to quit");
-                String confirm = this.Confirm().toUpperCase();
-                switch (confirm) {
-                    case "Y":
-                        LocationControl.movePlayer(row, column, fuel);
-                        System.out.println("\nBoat moved.");
-                        return true;
-                    case "Q":
-                        return true;
-                    default:
-                        System.out.println("\nInvalid selection.");
-                        return false;
-                }
+                MoveView moveView = new MoveView(row, column, fuel);
+                moveView.display();
             } catch (LocationControlException lce) {
-                System.out.println(lce.getMessage());
+                ErrorView.display(this.getClass().getName(),
+                    lce.getMessage());
             }
         }
         return false;
-    }
-
-    private String Confirm() {
-        String value = "";
-        try {
-            value = this.keyboard.readLine();
-        } catch (IOException ex) {
-            System.out.println("Error reading input.");
-        }
-        value = value.trim();
-        return value;
     }
 }

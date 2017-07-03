@@ -39,14 +39,14 @@ public class HelpMenuView  extends View {
                 this.displayShop();
                 break;
             default:
-                System.out.println("\n*** Please enter a valid selection.");
-                break;
+                ErrorView.display(this.getClass().getName(),
+                                  "Please enter a valid selection.");
         }
         return false;
     }
 
     private void displayObjective() {
-        System.out.println("\n----------------------------------------"
+        this.console.println("\n----------------------------------------"
                          + "\nThe objective of this game is to collect"
                          + "\n500 pounds of fish. You accomplish this "
                          + "\nby moving your boat around the lake, "
@@ -56,7 +56,7 @@ public class HelpMenuView  extends View {
     }
 
     private void displayFuel() {
-        System.out.println("\n----------------------------------------"
+        this.console.println("\n----------------------------------------"
                          + "\nTo move around the lake, select the grid"
                          + "\nlocation you want to move to. Distance "
                          + "\nbetween you and your destination will "
@@ -71,7 +71,7 @@ public class HelpMenuView  extends View {
     }
 
     private void displayCatch() {
-        System.out.println("\n----------------------------------------"
+        this.console.println("\n----------------------------------------"
                          + "\nIn order to catch a fish, you cast a "
                          + "\nline into the lake and a fish will "
                          + "\narrive. When you feel a tug on the line,"
@@ -84,7 +84,7 @@ public class HelpMenuView  extends View {
     }
 
     private void displayShop() {
-        System.out.println("\n----------------------------------------"
+        this.console.println("\n----------------------------------------"
                          + "\nAcross the lake, there are several shops"
                          + "\nyou can visit to buy everything you need"
                          + "\nto fish. At a shop, you can sell the "
