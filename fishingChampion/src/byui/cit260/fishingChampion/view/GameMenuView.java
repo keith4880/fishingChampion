@@ -5,6 +5,7 @@
  */
 package byui.cit260.fishingChampion.view;
 
+import byui.cit260.fishingChampion.control.GameControl;
 import byui.cit260.fishingChampion.model.Game;
 import byui.cit260.fishingChampion.model.InventoryItem;
 import byui.cit260.fishingChampion.model.Player;
@@ -23,6 +24,7 @@ public class GameMenuView extends View {
             + "\nM - View Map"
             + "\nL - Look Around"
             + "\nB - Check Boat"
+            + "\nF - Save Inventory to File"
             + "\nI - Interpret Clue"
             + "\nQ - Return to Main Menu"
             + "\n----------------------------------------"
@@ -44,6 +46,9 @@ public class GameMenuView extends View {
                 break;
             case "B":
                 this.checkBoat();
+                break;
+            case "F":
+                this.saveInventory();
                 break;
             case "I":
                 this.clueView();
@@ -83,5 +88,16 @@ public class GameMenuView extends View {
         this.console.println("Bait = " + inventory[Game.Item.bait.ordinal()].getAmount() + "/" + inventory[Game.Item.bait.ordinal()].getMaxAmout());
         this.console.println("Fuel Efficiency = " + inventory[Game.Item.fuelEfficiency.ordinal()].getAmount());
         this.console.println("Maximum Weight = " + inventory[Game.Item.maxWeight.ordinal()].getAmount());
+    }
+
+    private void saveInventory() {
+        this.console.println("\n\nEnter the file path for the file where the inventory "
+                           + "is to be saved.");
+        String filePath = this.getInput();
+        try {
+            GameControl.writeInventory(FishingChampion.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
     }
 }

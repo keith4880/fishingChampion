@@ -16,8 +16,10 @@ import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -116,6 +118,17 @@ public class GameControl {
             throw new GameControlException(e.getMessage());
         }
         FishingChampion.setCurrentGame(game);
+    }
+
+    public static void writeInventory(Game game, String filePath) throws IOException {
+        InventoryItem[] inventory = game.getInventoryItem();
+        try (PrintWriter out = new PrintWriter(filePath)) {
+            out.println("\n\n                    Inventory");
+            out.printf("%n%-20s%10s%10s", "Name", "Amount", "Maximum");
+            for (int i = 0; i < inventory.length; i++) {
+                out.printf("%n%-20s%7d%13d", Game.Item.values()[i], inventory[i].getAmount(), inventory[i].getMaxAmout());
+            }
+        }
     }
     
     
