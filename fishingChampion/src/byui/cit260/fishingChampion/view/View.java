@@ -29,6 +29,7 @@ public abstract class View implements ViewInterface {
     public void display() {
         boolean done = false;
         do {
+            this.console.println("\n" + this.displayMessage);
             String value = this.getInput();
             if (value.toUpperCase().equals("Q"))
                 return;
@@ -41,7 +42,6 @@ public abstract class View implements ViewInterface {
         String value = "";
         boolean valid = false;
         while (!valid) {
-            this.console.println("\n" + this.displayMessage);
             try {
                 value = this.keyboard.readLine();
             } catch (IOException ex) {

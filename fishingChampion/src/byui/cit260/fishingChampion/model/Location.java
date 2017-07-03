@@ -1,9 +1,11 @@
 package byui.cit260.fishingChampion.model;
 
+import java.io.Serializable;
+
 /*
  * Created by brax10 on 5/13/17.
  */
-public class Location {
+public class Location implements Serializable {
 
     public Scene getScene() {
         return scene;

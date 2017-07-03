@@ -1,10 +1,12 @@
 package byui.cit260.fishingChampion.model;
 
+import java.io.Serializable;
+
 
 /*
  * Created by brax10 on 5/13/17.
  */
-public class Game {
+public class Game implements Serializable {
     private String totalTime;
     private Player player;
     private InventoryItem[] inventory;

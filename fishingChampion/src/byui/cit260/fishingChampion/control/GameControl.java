@@ -11,8 +11,13 @@ import byui.cit260.fishingChampion.model.Location;
 import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.Scene;
+import exceptions.GameControlException;
 import exceptions.MapControlException;
 import fishingchampion.FishingChampion;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -91,6 +96,26 @@ public class GameControl {
                 }
             }
         }
+    }
+
+    public static void saveGame(Game game, String filepath) throws GameControlException {
+        try (FileOutputStream fops = new FileOutputStream(filepath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            output.writeObject(game);
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filepath) throws GameControlException {
+        Game game = null;
+        try (FileInputStream fips = new FileInputStream(filepath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            game = (Game) input.readObject();
+        } catch (Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        FishingChampion.setCurrentGame(game);
     }
     
     

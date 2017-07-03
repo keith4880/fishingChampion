@@ -60,11 +60,27 @@ public class MainMenuView extends View {
     }
 
     private void loadGame() {
-        this.console.println("*** loadGame function called ***");
+        this.console.println("\n\nEnter the file path for the file where the game "
+                           + "is to be saved.");
+        String filePath = this.getInput();
+        try {
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void saveGame() {
-        this.console.println("*** saveGame function called ***");
+        this.console.println("\n\nEnter the file path for the file where the game "
+                           + "is to be saved.");
+        String filePath = this.getInput();
+        try {
+            GameControl.saveGame(FishingChampion.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 
     private void displayHelpMenu() {
