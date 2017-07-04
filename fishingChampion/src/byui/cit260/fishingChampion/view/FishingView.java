@@ -6,19 +6,20 @@
 package byui.cit260.fishingChampion.view;
 
 import byui.cit260.fishingChampion.control.FishingControl;
-
+import exceptions.FishingControlException;
 
 /**
  *
  * @author kyt09
  */
 public class FishingView extends View {
+
     int fishWeight;
-    
+
     public FishingView() {
         super("\n____________________");
     }
-    
+
     public void castLine() {
         boolean checkBait = FishingControl.checkBait();
         if (checkBait == false) {
@@ -35,16 +36,15 @@ public class FishingView extends View {
             }
         }
     }
-            
+
     @Override
     public boolean doAction(String input) {
         int pullStrength;
         try {
             pullStrength = Integer.parseInt(input);
-        }
-        catch(NumberFormatException nFE) {
+        } catch (NumberFormatException nFE) {
             ErrorView.display(this.getClass().getName(),
-                              "Please enter a valid selection.");
+                    "Please enter a valid selection.");
             return false;
         }
         if (fishWeight > 99) {
@@ -56,46 +56,38 @@ public class FishingView extends View {
                 FishingControl.subtractBait();
                 this.console.println("You caught a " + fishWeight + "-pound fish!");
                 boolean boatSink = FishingControl.calcBoatSink();
-                    if (boatSink == true) {
-                        FishingControl.sinkBoat();
-                    }
+                if (boatSink == true) {
+                    FishingControl.sinkBoat();
+                }
                 return true;
             }
         } else {
-            int isCaught = FishingControl.determineCatch(fishWeight, pullStrength);
-            switch (isCaught) {
-                case -1:
-                    this.console.println("\nYou toss your fishing line into the water."
-                                     + "\nWhy did you do that?");
-                    FishingControl.subtractBait();
-                    break;
-                case 0:
-                    this.console.println("\nYou stand and stare at the water as the fish escapes.");
-                    FishingControl.subtractBait();
-                    break;
-                case 101:
-                    this.console.println("\nYou pull so hard, you fall into the water."
-                                     + "\nThe fish escapes as you climb back on.");
-                    FishingControl.subtractBait();
-                    break;
-                case 2:
-                    this.console.println("\nThe fish escapes.");
-                    FishingControl.subtractBait();
-                    break;
-                case 1:
-                    this.console.println("\nYou catch a " + fishWeight + "-pound fish.");
-                    FishingControl.addFish(fishWeight);
-                    FishingControl.subtractBait();
-                    boolean boatSink = FishingControl.calcBoatSink();
-                    if (boatSink == true) {
-                        FishingControl.sinkBoat();
-                    }
-                        break;
-            }
-            return true;
-        }
-    }
+            try {
+                int isCaught = FishingControl.determineCatch(fishWeight, pullStrength);
+                switch (isCaught) {
 
+                    case 2:
+                        this.console.println("\nThe fish escapes.");
+                        FishingControl.subtractBait();
+                        break;
+                    case 1:
+                        this.console.println("\nYou catch a " + fishWeight + "-pound fish.");
+                        FishingControl.addFish(fishWeight);
+                        FishingControl.subtractBait();
+                        boolean boatSink = FishingControl.calcBoatSink();
+                        if (boatSink == true) {
+                            FishingControl.sinkBoat();
+                        }
+                        break;
+                }
+
+            } catch (FishingControlException fce) {
+                this.console.println(fce.getMessage());
+                FishingControl.subtractBait();
+            }
+        }
+        return true;
+    }
 
     private boolean getPrompt(int fishWeight) {
         if (fishWeight > 100) {

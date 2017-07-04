@@ -5,6 +5,7 @@
  */
 package byui.cit260.fishingChampion.control;
 
+import exceptions.FishingControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -33,7 +34,7 @@ public class FishingControlTest {
      * Test of determineCatch method, of class FishingControl.
      */
     @Test
-    public void testDetermineCatch() {
+    public void testDetermineCatch() throws FishingControlException {
         // Successful catch
         System.out.println("determineCatch test 1");
         int fishWeight = 10;

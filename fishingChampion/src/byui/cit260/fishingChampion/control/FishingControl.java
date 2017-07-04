@@ -12,6 +12,7 @@ import byui.cit260.fishingChampion.model.Map;
 import byui.cit260.fishingChampion.model.Player;
 import byui.cit260.fishingChampion.model.Scene;
 import byui.cit260.fishingChampion.view.BoatSinkView;
+import exceptions.FishingControlException;
 import fishingchampion.FishingChampion;
 
 /**
@@ -53,14 +54,20 @@ public class FishingControl {
         fishWeight = (int) Math.round(Math.random() * 50 + 1);
         return fishWeight;
     }
-    public static int determineCatch(int fishWeight, int pullStrength) {
+    public static int determineCatch(int fishWeight, int pullStrength) 
+            throws FishingControlException {
         int isCaught;
         if (pullStrength < 0) {
-            isCaught = -1;
+            //isCaught = -1;
+            throw new FishingControlException("\nYou toss your fishing line into the water."
+                                     + "\nWhy did you do that?");
         } else if (pullStrength > 100) {
-            isCaught = 101;
+            //isCaught = 101;
+            throw new FishingControlException("\nYou pull so hard, you fall into the water."
+                                     + "\nThe fish escapes as you climb back on.");
         } else if (pullStrength == 0) {
-            isCaught = 0;
+            //isCaught = 0;
+            throw new FishingControlException("\nYou stand and stare at the water as the fish escapes.");
         } else if (Math.abs(fishWeight - pullStrength) > 5) {
             isCaught = 2;
         } else {
