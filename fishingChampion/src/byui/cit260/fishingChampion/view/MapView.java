@@ -55,7 +55,7 @@ public class MapView extends View {
                     if (locations[i][j].getVisited() == true) {
                         Scene scene = locations[i][j].getScene();
                         if (scene == null) {
-                            this.console.print(" ?? ");
+                            this.console.print(">??<");
                         } else {
                             this.console.print(">" + scene.getDisplaySymbol() + "<");
                         }

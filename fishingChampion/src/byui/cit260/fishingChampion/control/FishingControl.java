@@ -167,6 +167,12 @@ public class FishingControl {
         locations[coordinates[0]][coordinates[1]].setScene(championFish);
     }
 
+    public static boolean checkWin() {
+        Game game = FishingChampion.getCurrentGame();
+        InventoryItem[] inventory = game.getInventoryItem();
+        return inventory[Game.Item.fish.ordinal()].getAmount() >= 500;
+    }
+
 }
     
 /*

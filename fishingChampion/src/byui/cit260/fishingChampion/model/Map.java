@@ -36,7 +36,15 @@ public class Map implements Serializable {
         fish2,
         fish3,
         fish4,
-        fish5;
+        fish5,
+        fish6,
+        fish7,
+        fish8,
+        fish9,
+        fish10,
+        fish11,
+        fish12,
+        fish13;
     }
 
     public Map(int noOfRows, int noOfColumns) {

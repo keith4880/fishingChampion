@@ -77,6 +77,12 @@ public class FishingView extends View {
                         boolean boatSink = FishingControl.calcBoatSink();
                         if (boatSink == true) {
                             FishingControl.sinkBoat();
+                        } else {
+                            boolean win = FishingControl.checkWin();
+                            if (win == true) {
+                                WinView winView = new WinView();
+                                winView.display();
+                            }
                         }
                         break;
                 }

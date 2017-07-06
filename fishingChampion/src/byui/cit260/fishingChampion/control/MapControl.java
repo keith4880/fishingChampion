@@ -86,6 +86,22 @@ public class MapControl {
         scenes[Map.SceneType.fish4.ordinal()] = fishScene;
         fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
         scenes[Map.SceneType.fish5.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish6.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish7.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish8.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish9.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish10.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish11.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish12.ordinal()] = fishScene;
+        fishScene.setFishMax((int) Math.round(Math.random() * 75 + 25));
+        scenes[Map.SceneType.fish13.ordinal()] = fishScene;
         
         return scenes;
     }
