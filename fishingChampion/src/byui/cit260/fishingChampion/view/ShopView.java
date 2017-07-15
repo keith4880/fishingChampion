@@ -10,14 +10,14 @@ public class ShopView extends View {
     
     public ShopView() {
             super("\n----------------------------------------"
-                + "\n Marina Shop                           |"
+                + "\n              MARINA SHOP               |"
                 + "\n----------------------------------------"
-                + "\nB - Buy Bait                $10 per Bait"
+                + "\nB - Buy Bait                 $1 per Bait"
                 + "\nF - Buy Fuel                $1 per Pound"
                 + "\nE - Upgrade Fuel Efficiency         $100"
                 + "\nM - Upgrade Max Weight      $2 per Pound"
                 + "\nS - Sell Fish               $2 per Pound"
-                + "\nQ - Exit Shop                       Free"
+                + "\nQ - Exit Shop                           "
                 + "\n----------------------------------------");
     }
 

@@ -14,15 +14,37 @@ import byui.cit260.fishingChampion.model.Player;
  */
 public class StartProgramView extends View {
     public StartProgramView() {
-        super("\n****************************************"
-            + "\n*                                      *"
-            + "\n* Welcome to Fishing Champion.         *"
-            + "\n* This game is about fishing. Your goal*"
-            + "\n* is to search the lake and collect as *"
-            + "\n* many pounds of fish as you can.      *"
-            + "\n*                                      *"
-            + "\n****************************************"
-            + "\nPlease enter your name: ");
+        super(
+"\n***************************************************************"
++ "\n*                                                             *"
++ "\n*                    XXXXXXXXXXXXXXXX                         *"
++ "\n*                 XXXXXXXXXXXXXXXXXXXXXXXXX             XX    *"
++ "\n*               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX        XXX    *"
++ "\n*              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*           XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*         XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*          XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*            XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*              XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    *"
++ "\n*               XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX         XXX    *"
++ "\n*                  XXXXXXXXXXXXXXXXXXXXXXX              XX    *"
++ "\n*                    XXXXXXXXXXXXXXXX                         *"
++ "\n*                                                             *"					
++ "\n***************************************************************"	
++ "\n*                                                             *"			
++ "\n*              WELCOME TO FISHING CHAMPION                    *"
++ "\n*                                                             *"
++ "\n* This game is about fishing. Your goal is to search the lake *"
++ "\n* and collect 500 pounds of fish.                             *"
++ "\n*                                                             *"
++ "\n* Let the fishing adventure begin.                            *"
++ "\n*                                                             *"
++ "\n* Good luck angler and have fun!                              *"
++ "\n*                                                             *"
++ "\n***************************************************************"
++ "\n                                                               "
++ "\n Please Enter Your Name: ");					
     }
 
     @Override

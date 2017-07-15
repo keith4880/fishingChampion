@@ -20,13 +20,13 @@ public class GameMenuView extends View {
         super("\n----------------------------------------"
             + "\n| Game Menu                            |"
             + "\n----------------------------------------"
-            + "\nC - Cast a Line"
-            + "\nM - View Map"
+            + "\nC - Cast Your Line"
+            + "\nM - View the Map"
             + "\nL - Look Around"
-            + "\nB - Check Boat"
+            + "\nB - Check the Boat"
             + "\nF - Save Inventory to File"
-            + "\nI - Interpret Clue"
-            + "\nQ - Return to Main Menu"
+            + "\nI - Interpret the Clue"
+            + "\nQ - Return to the Main Menu"
             + "\n----------------------------------------"
             + "\nPlease select an option using the keyboard.");
     }

@@ -1,6 +1,0 @@
-byui.cit260.fishingChampion.view.MoveView - Please enter a valid selection.
-byui.cit260.fishingChampion.view.MapView - That location is outside the bounds of the map.
-byui.cit260.fishingChampion.view.MapView - Please enter a valid selection.For input string: "y"
-byui.cit260.fishingChampion.view.MapView - Please enter a valid selection.For input string: "y"
-byui.cit260.fishingChampion.view.MapView - That location is outside the bounds of the map.
-byui.cit260.fishingChampion.view.MoveView - Please enter a valid selection.
